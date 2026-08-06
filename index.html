@@ -160,8 +160,8 @@ function renderAll() {
         // Mini speak button for questions that contain Chinese characters
         var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
         if (cnChars || q.speak_text) {
-          var speakText = q.speak_text || q.sentence;
-          h += '<button class="mini-speak" onclick="speakCN(this, \\''+speakText.replace(/'/g,"\\\\'")+'\\')">🔊</button>';
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
         }
       }
       h += renderOpts(sec.id, q);
@@ -279,9 +279,9 @@ function setAudioSpeed(speed, btn) {
   if (btn) btn.classList.add('active');
 }
 
-function speakCN(btn, text) {
+function speakCNFromBtn(btn) {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
-  // Strip non-Chinese, keep only hanzi for pronunciation
+  var text = btn.dataset.speak || '';
   var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
   if (!cnText) cnText = text;
   var u = new SpeechSynthesisUtterance(cnText);
