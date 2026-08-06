@@ -139,7 +139,7 @@ function renderAll() {
       var subData = quizData.subtitles || [];
       if (subData.length > 0) {
         h += '<div class="subtitles">';
-        h += '<span class="sub-toggle" onclick="var d=this.parentElement.querySelector(\'.sub-body\'); d.style.display = d.style.display===\\'none\\' ? \\'block\\' : \\'none\\';">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
         h += '<div class="sub-body" style="display:none;">';
         subData.forEach(function(sl) {
           h += '<div class="sub-line">';
@@ -293,6 +293,11 @@ function speakCNFromBtn(btn) {
   u.onerror = function() { btn.style.opacity = '1'; };
   btn.style.opacity = '0.5';
   window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
 }
 
 function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
