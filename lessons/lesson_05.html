@@ -83,7 +83,7 @@ body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-
 </head>
 <body>
 <div class="container">
-  <div class="header"><h1>Урок 5: Числа 11-100 и «Сколько стоит?» (多少钱)</h1><div class="subtitle">2026-08-07</div></div>
+  <div class="header"><h1>Урок 5: Числа 11-100 и «Сколько стоит?» (多少钱)</h1><div class="subtitle">2026-08-07</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
   <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">多少钱？ (duō shao qián?) — Сколько стоит?</div><div class="translation">Сколько стоит? / Какая цена?</div></div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   <div id="quizContent"></div>
@@ -236,6 +236,7 @@ function sel(btn) {
   answers[sid][qid]=val; answered++;
   const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
   const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
   btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
     s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
   });
@@ -318,6 +319,24 @@ function toggleSubs(el) {
 
 function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
 init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
 </script>
 </body>
 </html>
