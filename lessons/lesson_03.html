@@ -328,6 +328,8 @@ function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
   var qk = (q.sentence || q.id).substring(0, 120);
   var entry = data[qk];
   if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
     entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
                correct: String(q.correct), explanation: q.explanation || '',
                speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
