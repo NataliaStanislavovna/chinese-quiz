@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 13: Дни недели — 星期一 … 星期日, сегодня, завтра, вчера</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 13: Дни недели — 星期一 … 星期日, сегодня, завтра, вчера</h1><div class="subtitle">2026-08-17</div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">今天星期一。 (jīn tiān xīng qī yī) — Сегодня понедельник.</div><div class="translation">Сегодня понедельник.</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 13: Дни недели — 星期一 … 星期日, сегодня, завтра, вчера", "subtitle": "2026-08-17", "date": "2026-08-17", "phrase_of_the_day": "今天星期一。 (jīn tiān xīng qī yī) — Сегодня понедельник.", "phrase_translation": "Сегодня понедельник.", "phrase_pinyin": "jīn tiān xīng qī yī", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_13.mp3", "subtitles": [{"speaker": "Lan", "hanzi": "Li, 今天星期几?", "pinyin": "Li, jīn tiān xīng qī jǐ?"}, {"speaker": "Li", "hanzi": "今天星期五。", "pinyin": "jīn tiān xīng qī wǔ。"}, {"speaker": "Lan", "hanzi": "星期六我想去博物馆。", "pinyin": "xīng qī liù wǒ xiǎng qù bó wù guǎn。"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Слово «неделя» — 星期. Какие тоны?", "options": ["1-й, 1-й (xīng qī)", "2-й, 2-й (xíng qí)", "4-й, 1-й (xìng qī)"], "correct": "1-й, 1-й (xīng qī)", "explanation": "星期 — xīng qī, оба слога в 1-м (ровном высоком) тоне. Дни недели строятся просто: 星期 + номер дня от 1 до 6, а воскресенье — 星期日 или 星期天.", "speak_text": "星期"}, {"id": "t2", "type": "choice", "sentence": "Слово «сегодня» — 今天. Какие тоны?", "options": ["1-й, 1-й (jīn tiān)", "3-й, 2-й (jǐn tián)", "4-й, 1-й (jìn tiān)"], "correct": "1-й, 1-й (jīn tiān)", "explanation": "今天 — jīn tiān, оба слога в 1-м тоне. Запомните пару: 今天 (сегодня) — 明天 (míng tiān, завтра) — 昨天 (zuó tiān, вчера).", "speak_text": "今天"}, {"id": "t3", "type": "choice", "sentence": "Слово «завтра» — 明天. Какие тоны у 明?", "options": ["2-й тон (míng)", "1-й тон (mīng)", "4-й тон (mìng)"], "correct": "2-й тон (míng)", "explanation": "明 — míng, 2-й (восходящий) тон. 明天 (míng tiān) — завтра. Сам иероглиф 明 значит «яркий, ясный» — как «светлое будущее» = завтра.", "speak_text": "明天"}, {"id": "t4", "type": "choice", "sentence": "Как правильно прочитать фразу 今天星期三?", "options": ["jīn tiān xīng qī sān", "jīn tián xìng qí sān", "jìn tiān xīng qǐ sān"], "correct": "jīn tiān xīng qī sān", "explanation": "今天星期三 (jīn tiān xīng qī sān) — «Сегодня среда». Обратите внимание: в таких фразах глагол-связка не нужен — по-китайски говорят «Сегодня неделя три».", "speak_text": "今天星期三"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Как сказать «понедельник» по-китайски?", "options": ["星期一 (xīng qī yī)", "星期二 (xīng qī èr)", "星期六 (xīng qī liù)"], "correct": "星期一 (xīng qī yī)", "explanation": "Понедельник — «неделя один»: 星期一 (xīng qī yī). Далее: 星期二 (вторник), 星期三 (среда), 星期四 (четверг), 星期五 (пятница), 星期六 (суббота).", "speak_text": "星期一"}, {"id": "v2", "type": "choice", "sentence": "Как сказать «воскресенье» по-китайски?", "options": ["星期日 или 星期天 (xīng qī rì / xīng qī tiān)", "星期七 (xīng qī qī)", "星期零 (xīng qī líng)"], "correct": "星期日 или 星期天 (xīng qī rì / xīng qī tiān)", "explanation": "Воскресенье — 星期日 (xīng qī rì) или 星期天 (xīng qī tiān). «Седьмого дня» 星期七 не существует! 日 и 天 здесь означают «день». На календарях и расписаниях чаще пишут 星期的 сокращение: 周日 (zhōu rì).", "speak_text": "星期日"}, {"id": "v3", "type": "choice", "sentence": "Что значит 昨天 (zuó tiān)?", "options": ["Вчера", "Сегодня", "Завтра"], "correct": "Вчера", "explanation": "昨天 (zuó tiān) — вчера. Тройка на запоминание: 昨天 (вчера) — 今天 (сегодня, jīn tiān) — 明天 (завтра, míng tiān). Меняется только первый иероглиф.", "speak_text": "昨天"}, {"id": "v4", "type": "choice", "sentence": "В расписании музея написано 周一 (zhōu yī). Что это значит?", "options": ["Понедельник (сокращённая форма от 星期一)", "Первая неделя", "Один юань"], "correct": "Понедельник (сокращённая форма от 星期一)", "explanation": "周 (zhōu) — краткая форма 星期. 周一 = 星期一 (понедельник), 周六 = суббота, 周日 = воскресенье. Эта форма очень часто встречается на указателях и в расписаниях: 周一闭馆 (zhōu yī bì guǎn) — «по понедельникам закрыто».", "speak_text": "周一"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "c1", "type": "choice", "sentence": "Иероглиф 天 (tiān) означает «день, небо». Где он НЕ используется?", "options": ["星期三 (среда)", "今天 (сегодня)", "明天 (завтра)"], "correct": "星期三 (среда)", "explanation": "В 星期三 (среда) используется номер дня 三, а не 天. Зато 天 есть в 今天 (сегодня), 明天 (завтра), 昨天 (вчера) и в варианте воскресенья 星期天.", "speak_text": "天"}, {"id": "c2", "type": "choice", "sentence": "Какой иероглиф означает «солнце, день» и используется для воскресенья?", "options": ["日", "月", "火"], "correct": "日", "explanation": "日 (rì) — «солнце, день». Воскресенье — 星期日 (xīng qī rì). Иероглиф рисует солнце: круг с точкой в центре. Запомните: 日 в составе слов о датах и днях.", "speak_text": "日"}, {"id": "c3", "type": "choice", "sentence": "Сопоставьте: 今天星期六. Какой это день?", "options": ["Суббота", "Четверг", "Воскресенье"], "correct": "Суббота", "explanation": "六 (liù) — шесть, значит 星期六 (xīng qī liù) — суббота, шестой день недели. Воскресенье было бы 星期日, четверг — 星期四 (число 四 = 4).", "speak_text": "今天星期六"}]}, {"id": "s4", "title": "Повторение", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "Повторение времени: 现在几点? (xiàn zài jǐ diǎn) Как правильно ответить «Сейчас 8:30»?", "options": ["现在八点半。", "现在八点一刻。", "现在两点半。"], "correct": "现在八点半。", "explanation": "8:30 — 八点半 (bā diǎn bàn), буквально «восемь часов и половина». 一刻 — это 15 минут, а 两点半 — 2:30 (после часа 两, а не 二).", "speak_text": "现在八点半"}, {"id": "r2", "type": "choice", "sentence": "Повторение: что значит 九点差一刻 (jiǔ diǎn chà yī kè)?", "options": ["Без четверти девять (8:45)", "Четверть десятого (9:15)", "Половина девятого (8:30)"], "correct": "Без четверти девять (8:45)", "explanation": "差 (chà) — «не хватает». 九点差一刻 — «до девяти не хватает четверти», то есть 8:45. А 9:15 — это 九点一刻.", "speak_text": "九点差一刻"}, {"id": "r3", "type": "choice", "sentence": "Повторение вопросов: как спросить «Когда?» по-китайски?", "options": ["什么时候? (shén me shí hou)", "在哪里? (zài nǎ lǐ)", "多少钱? (duō shao qián)"], "correct": "什么时候? (shén me shí hou)", "explanation": "什么时候 (shén me shí hou) — «когда?». 今天 сочетается с этим вопросом: 你什么时候去北京? (nǐ shén me shí hou qù Běi jīng) — Когда ты едешь в Пекин?", "speak_text": "什么时候"}]}, {"id": "s5", "title": "Practical", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Ситуация: Hua(F) спрашивает кассира в музее: 今天开门吗? В какой день музей обычно закрыт, если на doors табличка 周一闭馆?", "options": ["В понедельник", "В субботу", "Каждый день открыт"], "correct": "В понедельник", "explanation": "闭馆 (bì guǎn) — «закрыто» (о музее). 周一闭馆 — «закрыто по понедельникам». Полезнейшая надпись в Китае: музеи чаще всего не работают именно в понедельник. Запомните: 周一 = понедельник.", "speak_text": "周一闭馆"}, {"id": "p2", "type": "choice", "sentence": "Ситуация: вы у стойки отеля. Chen(M) на ресепшене говорит: 明天星期天. Что он имеет в виду?", "options": ["Завтра воскресенье", "Сегодня понедельник", "Вчера была суббота"], "correct": "Завтра воскресенье", "explanation": "明天 (míng tiān) — завтра, 星期天 (xīng qī tiān) — воскресенье. Полезно в отелях: в выходные (星期六 и 星期天) расписание завтраков и трансферов может отличаться.", "speak_text": "明天星期天"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на китайский: «Какой сегодня день недели?»", "options": ["今天星期几?", "现在几点?", "今天几月?"], "correct": "今天星期几?", "explanation": "今天星期几? (jīn tiān xīng qī jǐ) — «Сегодня который день недели?». Не путайте с 现在几点? (xiàn zài jǐ diǎn) — «Который час?»: там 点 (час), здесь 星期 (неделя) + 几.", "speak_text": "今天星期几"}, {"id": "tr2", "type": "choice", "sentence": "Переведите на русский: 我明天想去北京。(wǒ míng tiān xiǎng qù Běi jīng)", "options": ["Я хочу поехать в Пекин завтра.", "Я вчера был в Пекине.", "Я сегодня живу в Пекине."], "correct": "Я хочу поехать в Пекин завтра.", "explanation": "我 (я) 明天 (завтра) 想 (хочу) 去 (ехать, идти) 北京 (Пекин). 想 + глагол = «хочу сделать». Слово 去 (qù) — «отправляться куда-то» — одно из самых нужных в дороге.", "speak_text": "我明天想去北京"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог и ответьте: какой сегодня день?", "options": ["Пятница", "Понедельник", "Воскресенье"], "correct": "Пятница", "explanation": "Lan спрашивает: 今天星期几? (jīn tiān xīng qī jǐ) — «Сегодня какой день недели?». Вопрос строится со словом 几 (jǐ) — «который, сколько». Li отвечает: 今天星期五 — «Сегодня пятница» (五 = 5).", "audio_text": "Lan(F): Li, 今天星期几? Li(M): 今天星期五。"}, {"id": "l2", "type": "listen", "sentence": "Послушайте диалог ещё раз: что Lan хочет делать в субботу?", "options": ["Пойти в музей", "Купить билет на поезд", "Встретиться с Ying"], "correct": "Пойти в музей", "explanation": "Lan говорит: 星期六我想去博物馆 (xīng qī liù wǒ xiǎng qù bó wù guǎn) — «В субботу я хочу пойти в музей». 想 (xiǎng) + глагол — «хочу сделать». 博物馆 (bó wù guǎn) — музей.", "audio_text": "Lan(F): Li, 今天星期几? Li(M): 今天星期五。 Lan(F): 星期六我想去博物馆。"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+</script>
+</body>
+</html>
