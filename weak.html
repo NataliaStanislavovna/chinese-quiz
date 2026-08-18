@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Слабые места — китайский</title>
+<style>
+body { font-family: -apple-system, 'Segoe UI', sans-serif; background: #1a1a2e; color: #eee; margin: 0; padding: 16px; }
+.container { max-width: 680px; margin: 0 auto; }
+h1 { color: #ff6b8a; font-size: 22px; }
+.back { margin-bottom: 16px; }
+.back a { color: #7ec8ff; text-decoration: none; font-size: 0.95em; }
+.stats { background: #232342; border-radius: 12px; padding: 14px 18px; margin-bottom: 18px; font-size: 15px; }
+.q { background: #232342; border-radius: 12px; padding: 16px 18px; margin-bottom: 14px; }
+.q .sec { color: #7ec8ff; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.q .txt { font-size: 17px; margin-bottom: 10px; line-height: 1.5; }
+.q .opts button { display: block; width: 100%; text-align: left; background: #2c2c52; color: #eee; border: 1px solid #3d3d6b; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; font-size: 15px; cursor: pointer; }
+.q .opts button:disabled { cursor: default; opacity: 0.85; }
+.q .opts button.correct { background: #1d5c3f; border-color: #2f8f5f; }
+.q .opts button.wrong { background: #6b2430; border-color: #a03646; }
+.q .expl { display: none; margin-top: 8px; font-size: 13px; color: #bbb; border-top: 1px solid #33335c; padding-top: 8px; }
+.q .expl.visible { display: block; }
+.speak { background: none; border: 1px solid #3d3d6b; color: #7ec8ff; border-radius: 8px; padding: 4px 10px; cursor: pointer; font-size: 13px; margin-bottom: 8px; }
+.empty { text-align: center; padding: 50px 20px; color: #9fd89f; font-size: 17px; }
+.done { text-align: center; padding: 40px 20px; }
+.done .big { font-size: 42px; }
+</style>
+</head>
+<body>
+<div class="container">
+<div class="back"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html">← Все уроки</a></div>
+<h1>🎯 Повторение слабых мест</h1>
+<div class="stats" id="stats"></div>
+<div id="content"><p>Загрузка…</p></div>
+</div>
+<script>
+var KEY = 'cnq_mistakes_v1';
+var data = {};
+try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+var items = Object.keys(data).map(function(k){ return {k:k, e:data[k]}; })
+  .sort(function(a,b){ return b.e.wrong - a.e.wrong; });
+
+document.getElementById('stats').innerHTML = items.length
+  ? 'Собрано вопросов: <b>' + items.length + '</b>. Ответишь правильно два раза — вопрос уйдёт из списка.'
+  : '';
+
+function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+
+function speakText(t) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var cn = (t.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('') || t;
+  var u = new SpeechSynthesisUtterance(cn); u.lang='zh-CN'; u.rate=0.8;
+  var v = window.speechSynthesis.getVoices().find(function(v){return v.lang.startsWith('zh');});
+  if (v) u.voice = v;
+  window.speechSynthesis.speak(u);
+}
+
+function render() {
+  var c = document.getElementById('content');
+  if (items.length === 0) {
+    c.innerHTML = '<div class="empty">🎉 Слабых мест нет!<br><br>Проходи уроки — если где-то ошибёшься,<br>вопрос появится здесь.</div>';
+    return;
+  }
+  var h = '';
+  items.forEach(function(it, idx){
+    var e = it.e;
+    var opts = (e.options || []).slice();
+    for (var i=opts.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=opts[i]; opts[i]=opts[j]; opts[j]=t; }
+    h += '<div class="q"><div class="sec">' + esc(e.section) + ' · ошибок: ' + e.wrong + '</div>';
+    if (e.speak_text) h += '<button class="speak" onclick="speakText(\'' + esc(e.speak_text).replace(/'/g,"\\'") + '\')">🔊 Послушать</button>';
+    h += '<div class="txt">' + esc(e.sentence) + '</div><div class="opts">';
+    opts.forEach(function(o){
+      h += '<button onclick="pick(this,' + idx + ')" data-val="' + esc(o).replace(/"/g,'&quot;') + '">' + esc(o) + '</button>';
+    });
+    h += '</div><div class="expl" id="expl' + idx + '">' + esc(e.explanation) + '</div></div>';
+  });
+  c.innerHTML = h;
+}
+
+function pick(btn, idx) {
+  var it = items[idx];
+  var ok = btn.dataset.val === it.e.correct;
+  btn.parentElement.querySelectorAll('button').forEach(function(b){
+    b.disabled = true;
+    if (b.dataset.val === it.e.correct) b.classList.add('correct');
+    if (b === btn && !ok) b.classList.add('wrong');
+  });
+  document.getElementById('expl' + idx).classList.add('visible');
+  // update storage (same logic as lesson pages)
+  var d = {};
+  try { d = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e2){}
+  var entry = d[it.k];
+  if (entry) {
+    if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete d[it.k]; } }
+    else { entry.wrong++; entry.right = 0; }
+    try { localStorage.setItem(KEY, JSON.stringify(d)); } catch(e2){}
+  }
+  if (ok) { setTimeout(function(){ var el = btn.closest('.q'); if (el) { el.style.transition='opacity 0.5s'; el.style.opacity='0.35'; } }, 600); }
+}
+render();
+</script>
+</body>
+</html>
