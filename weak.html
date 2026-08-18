@@ -37,6 +37,9 @@ h1 { color: #ff6b8a; font-size: 22px; }
 var KEY = 'cnq_mistakes_v1';
 var data = {};
 try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) {}
+// purge non-mistakes (entries with no wrong answers) + keep only real mistakes
+Object.keys(data).forEach(function(k){ if (!data[k].wrong) delete data[k]; });
+try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
 var items = Object.keys(data).map(function(k){ return {k:k, e:data[k]}; })
   .sort(function(a,b){ return b.e.wrong - a.e.wrong; });
 
