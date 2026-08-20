@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 16: Год (年), числа года и год рождения</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 16: Год (年), числа года и год рождения</h1><div class="subtitle">2026-08-20</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">今年是二〇二六年 (jīn nián shì èr líng èr liù nián) означает «В этом году две тысячи двадцать шестой год»</div><div class="translation">В этом году две тысячи двадцать шестой год</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 16: Год (年), числа года и год рождения", "subtitle": "2026-08-20", "date": "2026-08-20", "phrase_of_the_day": "今年是二〇二六年 (jīn nián shì èr líng èr liù nián) означает «В этом году две тысячи двадцать шестой год»", "phrase_translation": "В этом году две тысячи двадцать шестой год", "phrase_pinyin": "jīn nián shì èr líng èr liù nián", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_16.mp3", "subtitles": [{"speaker": "Wang", "hanzi": "你好! 你要买几号的票?", "pinyin": "nǐ hǎo! nǐ yào mǎi jǐ hào de piào?"}, {"speaker": "Mei", "hanzi": "十月三号。", "pinyin": "shí yuè sān hào。"}, {"speaker": "Wang", "hanzi": "几点的火车?", "pinyin": "jǐ diǎn de huǒ chē?"}, {"speaker": "Mei", "hanzi": "早上八点半。", "pinyin": "zǎo shàng bā diǎn bàn。"}, {"speaker": "Wang", "hanzi": "好的, 二百块。", "pinyin": "hǎo de, èr bǎi kuài。"}, {"speaker": "Mei", "hanzi": "太贵了! 便宜一点, 好吗?", "pinyin": "tài guì le! pián yi yì diǎn, hǎo ma?"}, {"speaker": "Wang", "hanzi": "好的, 一百八十块。", "pinyin": "hǎo de, yì bǎi bā shí kuài。"}, {"speaker": "Mei", "hanzi": "谢谢!", "pinyin": "xiè xiè!"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Новое слово 年 (nián) означает «год». Какой у него тон?", "options": ["2 тон (nián)", "1 тон (niān)", "4 тон (niàn)"], "correct": "2 тон (nián)", "explanation": "年 (nián) произносится во втором тоне, голос идёт вверх, как будто вы спрашиваете «и ииизвините?». Этот иероглиф вы уже встречали в слове 星期一, там он звучал иначе, а сегодня он сам по себе означает «год».", "speak_text": "年"}, {"id": "t2", "type": "choice", "sentence": "Какие тоны у слова 今年 (jīn nián), которое означает «в этом году»?", "options": ["1 тон и 2 тон (jīn nián)", "2 тон и 1 тон (jín niān)", "1 тон и 4 тон (jīn niàn)"], "correct": "1 тон и 2 тон (jīn nián)", "explanation": "今 (jīn) вы уже знаете из 今天 (сегодня). Здесь первый тон, высокий и ровный. А 年 (nián) во втором тоне, вверх. Вместе: 今年, «этот год».", "speak_text": "今年"}, {"id": "t3", "type": "choice", "sentence": "Год в китайском читается по цифрам: 2026 год это 二〇二六年 (èr líng èr liù nián). Как читается символ 〇?", "options": ["líng, 2 тон, означает «ноль»", "lìng, 4 тон, означает «десять»", "līng, 1 тон, означает «пусто»"], "correct": "líng, 2 тон, означает «ноль»", "explanation": "〇 (líng) это «ноль» для записи годов, круглая форма подсказывает смысл. В номерах телефонов и годов вместо обычного 零 часто пишут круглый 〇. В году 2026 читаем: 二 (два), 〇 (ноль), 二 (два), 六 (шесть), 年 (год).", "speak_text": "二〇二六年"}, {"id": "t4", "type": "choice", "sentence": "Как правильно записать пиньинем слово 去年, которое означает «в прошлом году»?", "options": ["qù nián", "qū nián", "qǔ nián"], "correct": "qù nián", "explanation": "去 (qù) в четвёртом тоне, резко вниз, вы знаете его по фразе 我想去 (я хочу пойти). 年 (nián) во втором тоне. 去年 означает «прошлый год», буквально «ушедший год».", "speak_text": "去年"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что означает слово 今年 (jīn nián)?", "options": ["«В этом году»", "«В следующем году»", "«В прошлом году»"], "correct": "«В этом году»", "explanation": "今年 (jīn nián) означает «в этом году»: 今 это «сейчас, текущий» (как в 今天, сегодня), 年 означает «год». Пример: 今年我的生日是星期天, «в этом году мой день рождения в воскресенье».", "speak_text": "今年"}, {"id": "v2", "type": "choice", "sentence": "Что означает слово 明年 (míng nián)?", "options": ["«В следующем году»", "«В этом году»", "«Каждый год»"], "correct": "«В следующем году»", "explanation": "明 (míng) вы знаете из 明天 (завтра). 明年 (míng nián) означает «в следующем году». А «в прошлом году» будет 去年 (qù nián). Три слова подряд: 去年, 今年, 明年.", "speak_text": "明年"}, {"id": "v3", "type": "choice", "sentence": "Как спросить «В каком году ты родился или родилась?»", "options": ["你哪年生的？(nǎ nián shēng de)", "你几岁了？(nǐ jǐ suì le)", "你的生日是哪天？(nǐ de shēng rì shì nǎ tiān)"], "correct": "你哪年生的？(nǎ nián shēng de)", "explanation": "你哪年生的？(nǎ nián shēng de) дословно: «ты каким годом рождён(а)?». Слово 哪 (nǎ) «какой» вы знаете из 哪里. Ответ: 我一九九五年生的, «я родился или родилась в тысяча девятьсот девяносто пятом году».", "speak_text": "你哪年生的？"}, {"id": "v4", "type": "choice", "sentence": "Кассир спрашивает: 你要买几号的票？(jǐ hào de piào). Что он хочет узнать? Слово 票 (piào) означает «билет».", "options": ["«На какое число вам нужен билет?»", "«Сколько стоит билет?»", "«В каком году вы родились?»"], "correct": "«На какое число вам нужен билет?»", "explanation": "几号 это «какое число месяца», вы знаете это из 今天几号. 票 (piào) новое слово, «билет». Ответ: 十月三号的票, «билет на третье октября». Билет на поезд это 火车票 (huǒ chē piào).", "speak_text": "你要买几号的票？"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "c1", "type": "choice", "sentence": "Какой иероглиф означает «год»?", "options": ["年", "月", "号"], "correct": "年", "explanation": "年 (nián) означает «год». 月 (yuè) означает «месяц», 号 (hào) означает «число месяца». Полная дата строится так: сначала год с 年, потом месяц с 月, потом число с 号.", "speak_text": "年"}, {"id": "c2", "type": "choice", "sentence": "Как правильно записать «в прошлом году» иероглифами?", "options": ["去年", "今年", "明年"], "correct": "去年", "explanation": "去年 (qù nián) означает «в прошлом году»: 去 «уходить», то есть «ушедший год». 今年 «этот год», 明年 «следующий год». Логика та же, что у 昨天, 今天,明天 для дней.", "speak_text": "去年"}, {"id": "c3", "type": "choice", "sentence": "Что означает запись 二〇二六年 (èr líng èr liù nián)?", "options": ["«Две тысячи двадцать шестой год»", "«Двадцать шестое число второго месяца»", "«Двадцать два года и шесть месяцев»"], "correct": "«Две тысячи двадцать шестой год»", "explanation": "Год читается цифра за цифрой и заканчивается на 年: 二 (два), 〇 (ноль), 二 (два), 六 (шесть), 年 (год). Для дат после года идёт месяц и число: 二〇二六年十月三号.", "speak_text": "二〇二六年"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "Вспомните дни недели. Что отвечает китаец на вопрос 今天星期几？если сегодня среда?", "options": ["星期三 (xīng qī sān)", "星期二 (xīng qī èr)", "星期四 (xīng qī sì)"], "correct": "星期三 (xīng qī sān)", "explanation": "星期三 (xīng qī sān) означает «среда», буквально «неделя три». 二 это вторник, 四 это четверг. Эту схему вы проходили на уроке о днях недели.", "speak_text": "星期三"}, {"id": "r2", "type": "choice", "sentence": "Поезд отправляется в 八点半 (bā diǎn bàn). Во сколько это?", "options": ["В восемь тридцать", "В восемь часов", "В полдевятого вечера"], "correct": "В восемь тридцать", "explanation": "八点半 (bā diǎn bàn) означает «восемь тридцать»: 八 «восемь», 点 «час», 半 «половина». Полезно для билетов на поезд: 几点的火车? «во сколько поезд?».", "speak_text": "八点半"}, {"id": "r3", "type": "choice", "sentence": "Как сказать «двенадцатый месяц», то есть «декабрь»?", "options": ["十二月 (shí èr yuè)", "二十月 (èr shí yuè)", "十两月 (shí liǎng yuè)"], "correct": "十二月 (shí èr yuè)", "explanation": "Месяцы образуются просто: число и 月. 十二 «двенадцать», значит十二月 «декабрь». Помните: после десятка идёт 一, 二, 三: 十一 «одиннадцать», 十二 «двенадцать».", "speak_text": "十二月"}]}, {"id": "s5", "title": "Practical", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Вы покупаете билет на поезд в кассе. Кассир спрашивает: 你要买几号的票？Вы хотите билет на третье октября. Что ответить?", "options": ["十月三号的票 (shí yuè sān hào de piào)", "三月十号的票 (sān yuè shí hào de piào)", "二〇二六号的票 (èr líng èr liù hào de piào)"], "correct": "十月三号的票 (shí yuè sān hào de piào)", "explanation": "Сначала месяц, потом число: 十月 «октябрь», 三号 «третье». Окончание 的票 «билет такого числа». Вариант 三月十号 это «десятое марта», порядок слов другой, дата меняется.", "speak_text": "十月三号的票"}, {"id": "p2", "type": "choice", "sentence": "При регистрации в гостинице служащий спрашивает: 你哪年生的？Вы родились в 1995 году. Как ответить?", "options": ["我一九九五年生的 (wǒ yī jiǔ jiǔ wǔ nián shēng de)", "我一九九五年号 (wǒ yī jiǔ jiǔ wǔ nián hào)", "我的生日一九九五 (wǒ de shēng rì yī jiǔ jiǔ wǔ)"], "correct": "我一九九五年生的 (wǒ yī jiǔ jiǔ wǔ nián shēng de)", "explanation": "Год называют по цифрам и добавляют 年, потом 生的 «родился или родилась»: 一 (один), 九 (девять), 九 (девять), 五 (пять), 年 (год). Просто запомните эту готовую фразу, она пригодится в гостинице и при покупке сим карты.", "speak_text": "我一九九五年生的"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на русский: 我的生日是一九九五年三月八号 (wǒ de shēng rì shì yī jiǔ jiǔ wǔ nián sān yuè bā hào)", "options": ["«Мой день рождения восьмое марта тысяча девятьсот девяносто пятого года»", "«Мой день рождения восьмое марта две тысячи двадцать шестого года»", "«Мой день рождения десятое августа тысяча девятьсот девяносто пятого года»"], "correct": "«Мой день рождения восьмое марта тысяча девятьсот девяносто пятого года»", "explanation": "Порядок в китайской дате всегда одинаковый: сначала год 一九九五年, потом месяц 三月 (март), потом число 八号 (восьмое). Читаем год по цифрам: один, девять, девять, пять, 年.", "speak_text": "我的生日是一九九五年三月八号"}, {"id": "tr2", "type": "choice", "sentence": "Как сказать по-китайски «В следующем году я хочу поехать в Китай»?", "options": ["明年我想去中国 (míng nián wǒ xiǎng qù Zhōngguó)", "去年我去中国 (qù nián wǒ qù Zhōngguó)", "今年我想中国 (jīn nián wǒ xiǎng Zhōngguó)"], "correct": "明年我想去中国 (míng nián wǒ xiǎng qù Zhōngguó)", "explanation": "明年 «в следующем году», 我想 «я хочу», 去 «поехать, пойти», 中国 «Китай». Все эти слова вы уже знаете, сегодня добавилось только 明年. Отличная фраза для вашей цели!", "speak_text": "明年我想去中国"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог в кассе вокзала и ответьте: на какое число Mei покупает билет?", "options": ["На третье октября", "На тринадцатое октября", "На третье ноября"], "correct": "На третье октября", "explanation": "Wang спрашивает: 你要买几号的票? Mei отвечает: 十月三号 (shí yuè sān hào), то есть «третье октября». Внимательно слушайте разницу между 三 «три» и 十三 «тринадцать».", "audio_text": "Wang(M): 你好! 你要买几号的票? Mei(F): 十月三号。 Wang(M): 几点的火车? Mei(F): 早上八点半。 Wang(M): 好的, 二百块。 Mei(F): 太贵了! 便宜一点, 好吗? Wang(M): 好的, 一百八十块。 Mei(F): 谢谢!"}, {"id": "l2", "type": "listen", "sentence": "Послушайте диалог ещё раз: сколько Mei в итоге заплатила за билет?", "options": ["180 юаней", "200 юаней", "280 юаней"], "correct": "180 юаней", "explanation": "Сначала Wang называет цену 二百块 (èr bǎi kuài), двести юаней. Mei возражает: 太贵了! 便宜一点,好吗? «Слишком дорого! Подешевле, хорошо?». В итоге 一百八十块 (yī bǎi bā shí kuài), сто восемьдесят юаней. Торг работает даже в кассе!", "audio_text": "Wang(M): 你好! 你要买几号的票? Mei(F): 十月三号。 Wang(M): 几点的火车? Mei(F): 早上八点半。 Wang(M): 好的, 二百块。 Mei(F): 太贵了! 便宜一点, 好吗? Wang(M): 好的, 一百八十块。 Mei(F): 谢谢!"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
