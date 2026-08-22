@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 18: Семья (家), 爸爸, 妈妈, «В моей семье … человек» (我家有…口人)</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 18: Семья (家), 爸爸, 妈妈, «В моей семье … человек» (我家有…口人)</h1><div class="subtitle">2026-08-22</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">我家有四口人 (wǒ jiā yǒu sì kǒu rén) означает «В моей семье четыре человека»</div><div class="translation">В моей семье четыре человека</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 18: Семья (家), 爸爸, 妈妈, «В моей семье … человек» (我家有…口人)", "subtitle": "2026-08-22", "date": "2026-08-22", "phrase_of_the_day": "我家有四口人 (wǒ jiā yǒu sì kǒu rén) означает «В моей семье четыре человека»", "phrase_translation": "В моей семье четыре человека", "phrase_pinyin": "wǒ jiā yǒu sì kǒu rén", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_18.mp3", "subtitles": [{"speaker": "Mei", "hanzi": "你好, Li! 你家有几口人?", "pinyin": "nǐ hǎo, Li! nǐ jiā yǒu jǐ kǒu rén?"}, {"speaker": "Li", "hanzi": "我家有三口人, 爸爸, 妈妈 和 我。", "pinyin": "wǒ jiā yǒu sān kǒu rén, bà bà, mā mā hé wǒ。"}, {"speaker": "Mei", "hanzi": "你妈妈多大了?", "pinyin": "nǐ mā mā duō dà le?"}, {"speaker": "Li", "hanzi": "我妈妈今年五十岁。", "pinyin": "wǒ mā mā jīn nián wǔ shí suì。"}, {"speaker": "Mei", "hanzi": "我家有四口人。", "pinyin": "wǒ jiā yǒu sì kǒu rén。"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Новое слово 家 (jiā) означает «дом, семья». Какой у него тон?", "options": ["1 тон (jiā)", "3 тон (jiǎ)", "4 тон (jià)"], "correct": "1 тон (jiā)", "explanation": "家 (jiā) произносится в первом тоне, высоким ровным звуком, как будто вы спокойно констатируете: «дооом». Первый тон вы хорошо знаете по словам 天 (tiān) и 星期 (xīngqī).", "speak_text": "家"}, {"id": "t2", "type": "choice", "sentence": "Слово 妈妈 (māma) означает «мама». Какие в нём тоны?", "options": ["1 тон и нейтральный (māma)", "2 тон и 2 тон (mámá)", "4 тон и нейтральный (màma)"], "correct": "1 тон и нейтральный (māma)", "explanation": "Первый иероглиф 妈 (mā) в первом тоне, высокий и ровный. Второй 妈 читается легко, нейтральным тоном, без ударения. Так устроены многие слова про близких: важный первый слог, а второй смягчается.", "speak_text": "妈妈"}, {"id": "t3", "type": "choice", "sentence": "Слово 爸爸 (bàba) означает «папа», а слово 有 (yǒu) означает «иметь, у меня есть». Какие тоны у 爸 и 有?", "options": ["4 тон и 3 тон (bà, yǒu)", "1 тон и 2 тон (bā, yóu)", "4 тон и 4 тон (bà, yòu)"], "correct": "4 тон и 3 тон (bà, yǒu)", "explanation": "爸 (bà) в четвёртом тоне, резкий короткий вниз, а второй слог в слове 爸爸 нейтральный. 有 (yǒu) в третьем тоне, как 五 (wǔ) «пять» и 几 (jǐ). Полезная пара для памяти: 五 (wǔ) и 有 (yǒu) звучат похоже, оба в третьем тоне.", "speak_text": "爸爸 有"}, {"id": "t4", "type": "choice", "sentence": "Как правильно записать пиньинем фразу 我家有四口人 (в моей семье четыре человека)?", "options": ["wǒ jiā yǒu sì kǒu rén", "wǒ jiā yōu sì kōu rén", "wǒ jià yǒu shí kǒu rén"], "correct": "wǒ jiā yǒu sì kǒu rén", "explanation": "Разбираем по частям: 我 (wǒ) «я», 家 (jiā) «семья, дом», 有 (yǒu) «имеется», 四 (sì) «четыре», 口 (kǒu) счётное слово для членов семьи, 人 (rén) «человек». Все эти слоги вы теперь знаете, а 四 не путайте со 十, здесь именно четыре.", "speak_text": "我家有四口人"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что означает слово 家 (jiā)?", "options": ["«Дом, семья»", "«Год»", "«Гость»"], "correct": "«Дом, семья»", "explanation": "家 (jiā) означает и «дом», и «семья», это одно и то же слово. 我家 (wǒ jiā) это «моя семья» или «мой дом». Образное представление: под крышей дома спрятан символ достатка, поэтому дом это место, где живёт семья.", "speak_text": "家"}, {"id": "v2", "type": "choice", "sentence": "Кого называют словом 爸爸 (bàba)?", "options": ["Папу", "Маму", "Старшего брата"], "correct": "Папу", "explanation": "爸爸 (bàba) означает «папа». Слово простое и очень древнее по звучанию, ребёнок говорит «ба» одним из первых. В семье и в разговоре это именно отец, слово одинаково простое и повседневное.", "speak_text": "爸爸"}, {"id": "v3", "type": "choice", "sentence": "Что означает фраза 我家有五口人 (wǒ jiā yǒu wǔ kǒu rén)?", "options": ["«В моей семье пять человек»", "«Моему дому пять лет»", "«У меня пять домов»"], "correct": "«В моей семье пять человек»", "explanation": "Считаем состав семьи так: 我家 «моя семья», 有 «имеется», число, потом 口 rén счётовое слово для людей в семье и 人 «человек». Раньше вся семья ела из общего котла, 口 означает «рот», поэтому членов семьи считают «ртами». 五 это пять.", "speak_text": "我家有五口人"}, {"id": "v4", "type": "choice", "sentence": "Фраза 我家有四口人, 爸爸, 妈妈 和 我. Кто ещё не назван, если сказано, что в семье четыре человека?", "options": ["Сестра или брат", "Бабушка и двое дедушек", "Никого, в фразе ошибка"], "correct": "Сестра или брат", "explanation": "四口人 это четыре человека: папа, мама, я и ещё один человек, то есть сестра или брат. Союз 和 (hé) означает «и», он соединяет слова. Считать членов семьи умеете, скоро выучим слова для брата и сестры.", "speak_text": "我家有四口人"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "c1", "type": "choice", "sentence": "Какой иероглиф изображён под крышей и означает «дом, семья»?", "options": ["家", "年", "岁"], "correct": "家", "explanation": "家 (jiā) это «дом, семья». Сверху крыша, похожая на 宀, а внутри сокровище. Сравните с 年 (nián) «год», там снизу длинная черта, как течение времени, и 岁 (suì) «год возраста», который ставится после числа.", "speak_text": "家"}, {"id": "c2", "type": "choice", "sentence": "Найдите пару «мама и папа» среди вариантов:", "options": ["妈妈 和 爸爸", "妈妈 和 年年", "爸爸 和 岁"], "correct": "妈妈 和 爸爸", "explanation": "妈妈 (māma) «мама» и 爸爸 (bàba) «папа». Обратите внимание: у обоих слов иероглиф повторяется дважды, а у 妈妈 слева частичка 女 «женщина», у 爸爸 сверху частичка 父 «отец». 年年 и 岁 к родителям отношения не имеют, это про годы.", "speak_text": "妈妈 和 爸爸"}, {"id": "c3", "type": "choice", "sentence": "Какое слово вставить вместо пропуска: 我家有三( )人, то есть «в моей семье три человека»?", "options": ["口", "天", "月"], "correct": "口", "explanation": "Людей в семье считают словом 口 (kǒu), буквально «рот». Так говорится именно о членах семьи. 天 (tiān) это «день, небо», а 月 (yuè) «месяц, луна», для счёта родственников они не подходят.", "speak_text": "我家有三口人"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "Вспомните урок про возраст. Что означает фраза 我妈妈今年五十岁 (wǒ māma jīn nián wǔshí suì)?", "options": ["«Моей маме в этом году пятьдесят лет»", "«Моя мама родилась в мае»", "«У моей мамы пятьдесят юаней»"], "correct": "«Моей маме в этом году пятьдесят лет»", "explanation": "Собрали две темы в одну фразу: 我妈妈 «моя мама», 今年 «в этом году», 五十 «пятьдесят», 岁 (suì) «лет». Возраст строится по схеме: сначала человек, потом число, потом 岁. Порядок цифр помните: 五十 это пятьдесят, а 十五 это пятнадцать.", "speak_text": "我妈妈今年五十岁"}, {"id": "r2", "type": "choice", "sentence": "Как спросить у знакомого взрослого человека, сколько ему лет?", "options": ["你多大了?", "你几岁了?", "你的家在哪里?"], "correct": "你多大了?", "explanation": "你多大了? (nǐ duō dà le) нейтральный вопрос о возрасте для взрослых. 你几岁了? так спрашивают у детей. А 你的家在哪里? это «Где твой дом?», вопрос про место, здесь 有 дома ни при чём.", "speak_text": "你多大了"}, {"id": "r3", "type": "choice", "sentence": "Сегодня суббота, 22 августа 2026 года. Как сказать по-китайски «сегодня» и какой это день недели?", "options": ["今天 (jīntiān), 星期六 (xīngqīliù)", "明天 (míngtiān), 星期五 (xīngqīwǔ)", "昨天 (zuótiān), 星期日 (xīngqīrì)"], "correct": "今天 (jīntiān), 星期六 (xīngqīliù)", "explanation": "今天 это «сегодня», 明天 «завтра», 昨天 «вчера». Суббота это 星期六, шестой день недели, потому что отсчёт идёт от 星期一 понедельника. Числа вы знаете, так что дни недели собираются сами: 星期 плюс число.", "speak_text": "今天星期六"}]}, {"id": "s5", "title": "Practical", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Новая знакомая Ying(F) спрашивает о вашей семье. Как ответить «В моей семье три человека: папа, мама и я»?", "options": ["我家有三口人, 爸爸, 妈妈 和 我", "我的三口人是爸爸和妈妈", "我家三个人有爸爸妈妈"], "correct": "我家有三口人, 爸爸, 妈妈 和 我", "explanation": "Правильный порядок: 我家 «моя семья», 有 «имеется», 三口人 «три человека», потом перечисление через 和 (hé) «и». Второй и третий варианты ломают схему, в китайском сначала говорят о количестве, а потом уточняют, кто именно.", "speak_text": "我家有三口人 爸爸 妈妈 和 我"}, {"id": "p2", "type": "choice", "sentence": "Вы показываете другу фотографию семьи и говорите: 这是我妈妈, 她今年四十五岁. Что вы сказали?", "options": ["«Это моя мама, ей в этом году сорок пять лет»", "«Это моя мама, она родилась сорок пять лет назад в мае»", "«Моя мама придёт сегодня в сорок пять минут»"], "correct": "«Это моя мама, ей в этом году сорок пять лет»", "explanation": "Новая для вас конструкция 这是 (zhè shì) означает «это», она строится на знакомом 是. «Моя мама» это просто 我妈妈, слово 的 можно не вставлять. Дальше возраст по знакомой схеме: 她今年四十五岁 «ей в этом году сорок пять». 四十五 это сорок пять, сначала десятки, потом единицы.", "speak_text": "这是我妈妈 她今年四十五岁"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Как перевести фразу 我家有四口人?", "options": ["В моей семье четыре человека", "Мой дом стоит четыре года", "Четыре человека идут ко мне домой"], "correct": "В моей семье четыре человека", "explanation": "我 «я», 家 «семья, дом», 有 «имеется», 四口人 «четыре человека», счёт по «ртам». Буквально «в моём доме имеется четыре рта человек», по-русски естественно «в моей семье четыре человека».", "speak_text": "我家有四口人"}, {"id": "tr2", "type": "choice", "sentence": "Как по-китайски сказать «Это мой папа, ему сорок восемь лет»?", "options": ["这是我爸爸, 他今年四十八岁", "我爸爸是四十八年", "这是我的爸爸有四十八口人"], "correct": "这是我爸爸, 他今年四十八岁", "explanation": "Схема: 这是 «это», 我爸爸 «мой папа», потом 他 «он», 今年 «в этом году», 四十八 «сорок восемь», 岁 «лет». Второй вариант путает возраст и год, а третий бессмысленно считает папу «ротами». Числа помните: 四十八 это сорок восемь.", "speak_text": "这是我爸爸 他今年四十八岁"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог и ответьте: сколько человек в семье Li(M)?", "options": ["Три человека", "Четыре человека", "Пять человек"], "correct": "Три человека", "explanation": "Mei(F) спрашивает: 你家有几口人? то есть «Сколько человек в твоей семье?». Li(M) отвечает: 我家有三口人, 爸爸, 妈妈 和 我. 三 это три, значит в семье три человека: папа, мама и сам Li.", "audio_text": "Mei(F): 你好, Li! 你家有几口人? Li(M): 我家有三口人, 爸爸, 妈妈 和 我。 Mei(F): 你妈妈多大了? Li(M): 我妈妈今年五十岁。 Mei(F): 我家有四口人。", "speak_text": "你家有几口人"}, {"id": "l2", "type": "listen", "sentence": "Послушайте диалог ещё раз и ответьте: сколько лет маме Li(M)?", "options": ["Пятьдесят лет", "Пятнадцать лет", "Пять лет"], "correct": "Пятьдесят лет", "explanation": "Mei(F) спрашивает: 你妈妈多大了? Li(M) отвечает: 我妈妈今年五十岁, «моей маме в этом году пятьдесят лет». 五十 это пятьдесят, а пятнадцать было бы 十五. В конце Mei говорит 我家有四口人, у неё в семье четыре человека, не перепутайте семьи.", "audio_text": "Mei(F): 你好, Li! 你家有几口人? Li(M): 我家有三口人, 爸爸, 妈妈 和 我。 Mei(F): 你妈妈多大了? Li(M): 我妈妈今年五十岁。 Mei(F): 我家有四口人。", "speak_text": "我妈妈今年五十岁"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
