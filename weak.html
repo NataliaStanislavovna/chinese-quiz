@@ -49,6 +49,9 @@ document.getElementById('stats').innerHTML = items.length
 
 function esc(s){ var d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
 
+function speakFromBtn(btn) {
+  speakText(btn.dataset.speak || '');
+}
 function speakText(t) {
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   var cn = (t.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('') || t;
@@ -70,7 +73,7 @@ function render() {
     var opts = (e.options || []).slice();
     for (var i=opts.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=opts[i]; opts[i]=opts[j]; opts[j]=t; }
     h += '<div class="q"><div class="sec">' + esc(e.section) + ' · ошибок: ' + e.wrong + '</div>';
-    if (e.speak_text) h += '<button class="speak" onclick="speakText(\'' + esc(e.speak_text).replace(/'/g,"\\'") + '\')">🔊 Послушать</button>';
+    if (e.speak_text) h += '<button class="speak" data-speak="' + esc(e.speak_text) + '" onclick="speakFromBtn(this)">🔊 Послушать</button>';
     h += '<div class="txt">' + esc(e.sentence) + '</div><div class="opts">';
     opts.forEach(function(o){
       h += '<button onclick="pick(this,' + idx + ')" data-val="' + esc(o).replace(/"/g,'&quot;') + '">' + esc(o) + '</button>';
