@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 25: Мясо и яйца 牛肉, 羊肉, 鸡肉, 鸡蛋, вес 斤 и торг на рынке</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 25: Мясо и яйца 牛肉, 羊肉, 鸡肉, 鸡蛋, вес 斤 и торг на рынке</h1><div class="subtitle">2026-08-29</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">牛肉多少钱一斤</div><div class="translation">Почём говядина? (буквально: говядина, сколько денег за один цзинь)</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 25: Мясо и яйца 牛肉, 羊肉, 鸡肉, 鸡蛋, вес 斤 и торг на рынке", "subtitle": "2026-08-29", "date": "2026-08-29", "phrase_of_the_day": "牛肉多少钱一斤", "phrase_translation": "Почём говядина? (буквально: говядина, сколько денег за один цзинь)", "phrase_pinyin": "niúròu duōshao qián yì jīn", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_25.mp3", "subtitles": [{"speaker": "Zhang", "hanzi": "你好! 牛肉一斤二十五块。", "pinyin": "nǐ hǎo! niú ròu yī jīn èr shí wǔ kuài。"}, {"speaker": "Nata", "hanzi": "太贵了, 便宜一点, 好吗?", "pinyin": "tài guì le, pián yi yì diǎn, hǎo ma?"}, {"speaker": "Zhang", "hanzi": "好, 二十三块一斤。", "pinyin": "hǎo, èr shí sān kuài yī jīn。"}, {"speaker": "Nata", "hanzi": "好, 我买两斤。", "pinyin": "hǎo, wǒ mǎi liǎng jīn。"}, {"speaker": "Zhang", "hanzi": "谢谢!", "pinyin": "xiè xiè!"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Новое слово 牛肉 (niúròu) означает «говядина». Какой тон у второго слога, у 肉 (ròu)?", "options": ["4 тон, резко вниз (ròu)", "2 тон, голос вверх (róu)", "1 тон, высоко и ровно (rōu)"], "correct": "4 тон, резко вниз (ròu)", "explanation": "В слове 牛肉 (niúròu) слоги произносятся чётко: 牛 (niú) второй тон, голос вверх, а 肉 (ròu) четвёртый тон, резкий, как окрик. Если поднять голос на втором слоге и сказать róu, китаец услышит совсем другое слово. Повторите вслух: niúròu, сначала вверх, потом резко вниз.", "speak_text": "牛肉"}, {"id": "t2", "type": "choice", "sentence": "Слово 羊肉 (yángròu) означает «баранина». Какой тон у первого слога, у 羊 (yáng)?", "options": ["2 тон, голос вверх (yáng)", "4 тон, резко вниз (yàng)", "3 тон, вниз и вверх (yǎng)"], "correct": "2 тон, голос вверх (yáng)", "explanation": "Слуху полезно сравнивать пары: 羊 (yáng) второй тон, похож на вопросительное «да?», а 肉 (ròu) четвёртый, падающий. Вместе yángròu звучит как «вверх и вниз». Так же устроено уже знакомое слово 牛肉 (niúròu), только первый слог там тоже второй тон.", "speak_text": "羊肉"}, {"id": "t3", "type": "choice", "sentence": "Как правильно прочитать иероглиф 鸡 (jī) в слове 鸡肉 (jīròu)?", "options": ["jī, звук j, первый тон", "qī, звук q, первый тон", "jǐ, звук j, третий тон"], "correct": "jī, звук j, первый тон", "explanation": "Звук j в пиньине уже встречался вам в вопросительном слове 几 (jǐ) «сколько». Здесь такой же звук, но первый тон, высокий и ровный: 鸡 (jī). Не путайте с q в 七 (qī) «семь»: q произносится с сильным придыханием, а j без него. Повторите пару: jī, qī.", "speak_text": "鸡肉"}, {"id": "t4", "type": "choice", "sentence": "На рынке мясо продают на вес, мера называется 斤 (jīn). Какой тон у этого слога?", "options": ["1 тон, высоко и ровно (jīn)", "3 тон, вниз и вверх (jǐn)", "4 тон, резко вниз (jìn)"], "correct": "1 тон, высоко и ровно (jīn)", "explanation": "Слог 斤 (jīn) произносится первым тоном, ровно и высоко, точно так же, как первый слог в знакомом слове 今天 (jīntiān) «сегодня». Запомните связку: сегодня (jīntiān) на рынке полкило (jīn) говядины. Один 斤 равен пятистам граммам.", "speak_text": "一斤"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "l1", "type": "choice", "sentence": "Что означает слово 牛肉 (niúròu)?", "options": ["говядина", "баранина", "курица"], "correct": "говядина", "explanation": "Слово складывается из частей: 牛 (niú) означает «корова, бык», а 肉 (ròu) «мясо». Вместе получается «говядина». Такая логика работает во всех названиях мяса в этом уроке: вторая часть всегда 肉.", "speak_text": "牛肉"}, {"id": "l2", "type": "choice", "sentence": "Что означает слово 鸡蛋 (jīdàn)?", "options": ["яйцо", "фрукты", "лапша"], "correct": "яйцо", "explanation": "Слово 鸡蛋 (jīdàn) буквально «куриное яйцо»: 鸡 (jī) «курица» и 蛋 (dàn) «яйцо». В повседневной речи китайцы говорят просто 鸡蛋 про любые куриные яйца, без уточнений. На рынке яйца, как и мясо, продают на вес, по 斤 (jīn).", "speak_text": "鸡蛋"}, {"id": "l3", "type": "choice", "sentence": "Какое из трёх слов означает «баранина»?", "options": ["羊肉 (yángròu)", "牛肉 (niúròu)", "鸡肉 (jīròu)"], "correct": "羊肉 (yángròu)", "explanation": "Первый знак здесь 羊 (yáng) «овца, баран», поэтому 羊肉 (yángròu) это «баранина». Для памяти: у иероглифа 羊 сверху два «рога», как у барана. Баранина очень популярна на севере Китая, в Пекине и дальше на север.", "speak_text": "羊肉"}, {"id": "l4", "type": "choice", "sentence": "Вы на мясном рынке в Китае и видите табличку с ценой за 斤 (jīn). Сколько это граммов?", "options": ["500 граммов, примерно полкило", "100 граммов", "1000 граммов, целый килограмм"], "correct": "500 граммов, примерно полкило", "explanation": "Мера 斤 (jīn) равна пятистам граммам, то есть полкило. Это главная весовая мера на китайских рынках: мясо, фрукты и яйца продают именно за 斤. Если продавец говорит цену, он всегда имеет в виду один 斤. Два 斤 это килограмм.", "speak_text": "斤"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "h1", "type": "choice", "sentence": "Какой иероглиф означает «мясо» и входит сразу в три слова этого урока?", "options": ["肉 (ròu)", "蛋 (dàn)", "米 (mǐ)"], "correct": "肉 (ròu)", "explanation": "Иероглиф 肉 (ròu) «мясо» вы видите в словах 牛肉 (niúròu) говядина, 羊肉 (yángròu) баранина и 鸡肉 (jīròu) курица. Внутри знака как будто видны полоски мяса на кости. А вот 蛋 (dàn) это «яйцо», а 米 (mǐ) «рис».", "speak_text": "肉"}, {"id": "h2", "type": "choice", "sentence": "Какой иероглиф входит в слово 鸡蛋 (jīdàn), но не входит в слово 鸡肉 (jīròu)?", "options": ["蛋 (dàn)", "牛 (niú)", "羊 (yáng)"], "correct": "蛋 (dàn)", "explanation": "В слове 鸡蛋 (jīdàn) «яйцо» второй знак 蛋 (dàn), его нет в слове 鸡肉 (jīròu) «курица». Знаки 牛 (niú) и 羊 (yáng) означают «корова» и «баран» и в эти слова не входят. Разберите вслух оба слова по слогам: jī dàn и jī ròu.", "speak_text": "鸡蛋"}, {"id": "h3", "type": "choice", "sentence": "Выберите иероглиф, который читается niú и означает «корова, бык».", "options": ["牛 (niú)", "羊 (yáng)", "鸡 (jī)"], "correct": "牛 (niú)", "explanation": "Иероглиф 牛 (niú) «корова, бык» это вертикальный ствол с двумя рожками наклонёнными в сторону, как голова быка. Он первый в слове 牛肉 (niúròu) «говядина». Знак 羊 (yáng) «баран» тоже с рогами, но их два сверху по бокам, а 鸡 (jī) «курица» состоит из двух частей рядом.", "speak_text": "牛"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "На рынке продавец говорит: 一斤牛肉二十块 (yì jīn niúròu èrshí kuài). Ната просит 两斤 (liǎng jīn). Сколько она заплатит?", "options": ["四十块 (sìshí kuài), сорок юаней", "二十块 (èrshí kuài), двадцать юаней", "六十块 (liùshí kuài), шестьдесят юаней"], "correct": "四十块 (sìshí kuài), сорок юаней", "explanation": "Цена названа за один 斤 (jīn): 二十块 (èrshí kuài), двадцать юаней. Ната берёт 两斤 (liǎng jīn), то есть килограмм. Дважды по двадцать, всего сорок юаней: 四十块 (sìshí kuài). Обратите внимание, что «два» перед мерой веса произносится 两 (liǎng), а не 二 (èr).", "speak_text": "四十块"}, {"id": "r2", "type": "choice", "sentence": "Сколько денег означает сумма 两百块 (liǎng bǎi kuài)?", "options": ["200 юаней", "20 юаней", "2000 юаней"], "correct": "200 юаней", "explanation": "两百块 (liǎng bǎi kuài) это двести юаней: 两 (liǎng) «два», 百 (bǎi) «сто», 块 (kuài) счётное слово юаней. В разговорной речи перед мерой и числом сотен китайцы обычно говорят 两, а не 二, поэтому 两百块 звучит естественнее, чем 二百块, хотя понять можно оба варианта.", "speak_text": "两百块"}, {"id": "r3", "type": "choice", "sentence": "Ната платит за покупки в супермаркете, сумма на экране 510 юаней. Как кассир произнесёт эту сумму?", "options": ["五百一十块 (wǔbǎi yīshí kuài)", "五百块 (wǔbǎi kuài)", "一百一十块 (yībǎi yīshí kuài)"], "correct": "五百一十块 (wǔbǎi yīshí kuài)", "explanation": "Числа больше сотни собираются просто: сначала сотни, потом десятки. 五百 (wǔbǎi) «пятьсот», дальше сразу 一十 (yīshí) «десять», итого 五百一十块 (wǔbǎi yīshí kuài). Между сотнями и десятками ничего вставлять не нужно. Второй вариант это пятьсот, третий сто десять.", "speak_text": "五百一十块"}]}, {"id": "s5", "title": "Практические ситуации", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "s1", "type": "choice", "sentence": "Ната на фруктовом рынке. Продавец Zhang(M) говорит: 苹果八块一斤 (píngguǒ bā kuài yì jīn). Ната отвечает: 太贵了, 便宜一点, 好吗? (tài guì le, piányi yìdiǎn, hǎo ma) Продавец: 七块 (qī kuài). Что сделала Ната?", "options": ["Поторговалась и получила цену семь юаней за цзинь", "Заплатила восемь юаней, не вступая в разговор", "Пожаловалась, что яблоки плохого качества"], "correct": "Поторговалась и получила цену семь юаней за цзинь", "explanation": "Фраза 太贵了 (tài guì le) значит «слишком дорого», а 便宜一点 (piányi yìdiǎn) «сделайте подешевле». На рынке небольшой торг нормален, и продавец уступил с восьми до семи юаней за 斤 (jīn). Вежливое 好吗 в конце смягчает просьбу. Помните: в супермаркетах и сетевых магазинах цены фиксированные, там так не торгуются.", "speak_text": "太贵了,便宜一点,好吗"}, {"id": "s2", "type": "choice", "sentence": "Ната обедает в лапшичной. Продавщица Lan(F) спрашивает: 牛肉面还是鸡蛋面? (niúròu miàn háishi jīdàn miàn) Ната хочет лапшу с яйцом. Что ей ответить?", "options": ["鸡蛋面，谢谢 (jīdàn miàn, xièxie)", "牛肉面，谢谢 (niúròu miàn, xièxie)", "米饭，谢谢 (mǐfàn, xièxie)"], "correct": "鸡蛋面，谢谢 (jīdàn miàn, xièxie)", "explanation": "Слово 还是 (háishi) в вопросе означает «или»: продавщица предлагает выбор, лапша с говядиной или лапша с яйцом. В ответ достаточно назвать выбранное блюдо и поблагодарить. В лапшичной цены фиксированные, торговаться там не принято, а выбор из двух блюд это обычная ситуация.", "speak_text": "鸡蛋面,谢谢"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на китайский: «Ната хочет съесть говядину».", "options": ["我想吃牛肉 (wǒ xiǎng chī niúròu)", "我想吃羊肉 (wǒ xiǎng chī yángròu)", "我不喜欢吃牛肉 (wǒ bù xǐhuan chī niúròu)"], "correct": "我想吃牛肉 (wǒ xiǎng chī niúròu)", "explanation": "Конструкция 我想吃 «я хочу съесть» уже знакома вам по прошлым урокам, теперь после неё ставим новое слово: 牛肉 (niúròu) говядина. Второй вариант значит «я хочу съесть баранину», третий «я не люблю говядину», там частица 不 (bù) перед глаголом даёт отрицание.", "speak_text": "我想吃牛肉"}, {"id": "tr2", "type": "choice", "sentence": "Переведите на китайский: «Почём говядина?», имея в виду цену за полкило на рынке.", "options": ["牛肉多少钱一斤 (niúròu duōshao qián yì jīn)", "鸡蛋多少钱一斤 (jīdàn duōshao qián yì jīn)", "牛肉太贵了 (niúròu tài guì le)"], "correct": "牛肉多少钱一斤 (niúròu duōshao qián yì jīn)", "explanation": "Вопрос о цене строится из знакомых блоков: 多少钱 (duōshao qián) «сколько стоит» плюс мера 一斤 (yì jīn) «один цзинь». Получается «говядина, сколько денег за цзинь». Второй вариант спрашивает про яйца, а третий это не вопрос, а высказывание «говядина слишком дорогая».", "speak_text": "牛肉多少钱一斤"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "listen1", "type": "listen", "sentence": "Послушайте диалог на мясном рынке и ответьте: какую цену за один цзинь говядины продавец назвал сначала?", "options": ["25 юаней", "23 юаня", "52 юаня"], "correct": "25 юаней", "explanation": "Продавец Zhang(M) в начале говорит: 牛肉一斤二十五块, двадцать пять юаней за один цзинь говядины. После просьбы Наты цена снижается до 二十三块 (èrshí sān kuài), двадцати трёх юаней. Числа двадцать пять и двадцать три различаются последним слогом, wǔ и sān, слушайте его внимательно.", "audio_text": "Zhang(M): 你好! 牛肉一斤二十五块。 Nata: 太贵了, 便宜一点, 好吗? Zhang(M): 好, 二十三块一斤。 Nata: 好, 我买两斤。 Zhang(M): 谢谢!", "speak_text": "牛肉一斤二十五块"}, {"id": "listen2", "type": "listen", "sentence": "Послушайте тот же диалог и ответьте: чем он закончился?", "options": ["Ната согласилась на новую цену и купила два цзиня говядины", "Ната ушла без покупки, цена показалась высокой", "Ната вместо говядины купила баранину"], "correct": "Ната согласилась на новую цену и купила два цзиня говядины", "explanation": "В конце диалога Ната говорит 好 (hǎo) «хорошо» и 我买两斤 (wǒ mǎi liǎng jīn) «я покупаю два цзиня». Знакомый глагол 买 (mǎi) «покупать», а дальше 两斤 «два цзиня», то есть килограмм говядины по новой цене, двадцать три юаня за цзинь.", "audio_text": "Zhang(M): 你好! 牛肉一斤二十五块。 Nata: 太贵了, 便宜一点, 好吗? Zhang(M): 好, 二十三块一斤。 Nata: 好, 我买两斤。 Zhang(M): 谢谢!", "speak_text": "我买两斤"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
