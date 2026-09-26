@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 53: В кафе: горячее и холодное, 热的 (rè de) и 冰的 (bīng de), чашка кофе</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 53: В кафе: горячее и холодное, 热的 (rè de) и 冰的 (bīng de), чашка кофе</h1><div class="subtitle">2026-09-26</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)</div><div class="translation">Мне одну чашку горячего кофе</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 53: В кафе: горячее и холодное, 热的 (rè de) и 冰的 (bīng de), чашка кофе", "subtitle": "2026-09-26", "date": "2026-09-26", "phrase_of_the_day": "我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)", "phrase_translation": "Мне одну чашку горячего кофе", "phrase_pinyin": "wǒ yào yì bēi rè kāfēi", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_53.mp3", "subtitles": [{"speaker": "Chen", "hanzi": "你好！请问要什么？", "pinyin": "nǐ hǎo！qǐng wèn yào shén me？"}, {"speaker": "Nata", "hanzi": "我要一杯热咖啡。", "pinyin": "wǒ yào yī bēi rè kā fēi。"}, {"speaker": "Chen", "hanzi": "好的，咖啡十二块。还要别的吗？", "pinyin": "hǎo de，kā fēi shí èr kuài。hái yào bié de ma？"}, {"speaker": "Nata", "hanzi": "一杯冰水，谢谢。", "pinyin": "yī bēi bīng shuǐ，xiè xiè。"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Каким тоном произносится слог rè в слове 热的 (rè de) «горячий»?", "options": ["Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Четвёртым тоном, резко вниз", "explanation": "Слог rè четвёртый тон, голос резко идёт вниз. Иероглиф 热 вы знаете по слову 热水 (rè shuǐ) «горячая вода», оно встречалось в уроке про горячее и холодное. Частица 的 (de) «который» произносится нейтрально, без тона.", "speak_text": "热的"}, {"id": "t2", "type": "choice", "sentence": "Каким тоном произносится слог bīng в слове 冰的 (bīng de) «холодный, со льдом»?", "options": ["Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Первым тоном, ровно и высоко", "explanation": "Слог bīng первый тон, голос тянется ровно и высоко. Иероглиф 冰 (bīng) «лёд» вы знаете по слову 冰水 (bīng shuǐ) «ледяная вода». Выражение 冰的 (bīng de) буквально значит «со льдом», так называют холодные напитки в кафе.", "speak_text": "冰的"}, {"id": "t3", "type": "choice", "sentence": "Выберите правильный пиньинь фразы 一杯热咖啡 «чашка горячего кофе».", "options": ["yì bēi rè kāfēi", "yí bēi rè kāfēi", "yì bēi lè kāfēi", "yì bēi rè kǎfēi"], "correct": "yì bēi rè kāfēi", "explanation": "Правильный вариант yì bēi rè kāfēi. Единица 一 перед слогом первого тона bēi читается четвёртым тоном yì, а не вторым yí. Слог rè четвёртый тон, поэтому запись lè неверна, и оба слога в слове 咖啡 первые, вариант kǎfēi ошибочен.", "speak_text": "一杯热咖啡"}, {"id": "t4", "type": "choice", "sentence": "В слове 咖啡 (kāfēi) «кофе» оба слога имеют тон. Какие именно?", "options": ["kā первый, fēi первый", "kā первый, fēi второй", "kā второй, fēi первый", "kā третий, fēi четвёртый"], "correct": "kā первый, fēi первый", "explanation": "Оба слога в слове 咖啡 (kāfēi) первые, голос ровный и высокий на обоих. Кофе в Китае часто пьют со льдом даже в прохладную погоду, поэтому в кафе всегда уточняют, что вам принести, горячее или холодное.", "speak_text": "咖啡"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что означает фраза 一杯冰水 (yì bēi bīng shuǐ)?", "options": ["Стакан ледяной воды", "Стакан горячей воды", "Бутылка ледяной воды", "Стакан холодного чая"], "correct": "Стакан ледяной воды", "explanation": "Разбор: 一 (yī) «один», 杯 (bēi) «стакан», 冰 (bīng) «лёд», 水 (shuǐ) «вода». Соответственно 一杯热水 (yì bēi rè shuǐ) «стакан горячей воды», а 一瓶冰水 (yì píng bīng shuǐ) «бутылка ледяной воды». В кафе вода подаётся в стакане, поэтому 杯.", "speak_text": "一杯冰水"}, {"id": "v2", "type": "choice", "sentence": "Ната замёрзла в кафе под кондиционером и хочет кофе без льда. Какой напиток ей подходит?", "options": ["冰咖啡 (bīng kāfēi)", "热咖啡 (rè kāfēi)", "冰牛奶 (bīng niúnǎi)", "冰红茶 (bīng hóngchá)"], "correct": "热咖啡 (rè kāfēi)", "explanation": "Разберём ситуацию наоборот: Ната хочет кофе без льда, значит горячий, это 热咖啡 (rè kāfēi). 冰咖啡 (bīng kāfēi) «холодный кофе со льдом», 冰牛奶 (bīng niúnǎi) «холодное молоко», 冰红茶 (bīng hóngchá) «холодный чай». Слова 热的 и 冰的 в кафе относятся к любому напитку.", "speak_text": "热咖啡"}, {"id": "v3", "type": "choice", "sentence": "В меню кафе написано 咖啡十五块 (kāfēi shíwǔ kuài). Что это значит?", "options": ["Кофе стоит пятнадцать юаней", "Кофе стоит пятьдесят юаней", "Пять кофе по десять юаней", "Кофе стоит двенадцать юаней"], "correct": "Кофе стоит пятнадцать юаней", "explanation": "Разбор: 咖啡 (kāfēi) «кофе», 十五 (shíwǔ) «пятнадцать», 块 (kuài) «юань». В китайских кафе цены фиксированные, торговаться не принято, это не рынок. Дороже всего кофе в крупных сетях, уличные кофейни часто дешевле.", "speak_text": "咖啡十五块"}, {"id": "v4", "type": "choice", "sentence": "Ната хочет взять кофе с собой в дорогу и просит на вынос. Какая фраза подходит?", "options": ["请打包 (qǐng dǎbāo)", "在这里喝 (zài zhèlǐ hē)", "不要辣 (bú yào là)", "还要别的吗 (hái yào bié de ma)"], "correct": "请打包 (qǐng dǎbāo)", "explanation": "«Заверните с собой» это 请打包 (qǐng dǎbāo), фразу вы знаете по уроку про ресторан, там так просят упаковать недоеденное. В кафе с ней просят кофе навынос. 在这里喝 (zài zhèlǐ hē) «выпью здесь», 不要辣 (bú yào là) «без острого», 还要别的吗 (hái yào bié de ma) «что-нибудь ещё?».", "speak_text": "请打包"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "h1", "type": "choice", "sentence": "Какое из этих слов означает «горячая вода»?", "options": ["冰水 (bīng shuǐ)", "热水 (rè shuǐ)", "热咖啡 (rè kāfēi)", "冰牛奶 (bīng niúnǎi)"], "correct": "热水 (rè shuǐ)", "explanation": "«Горячая вода» это 热水 (rè shuǐ): 热 (rè) «горячий» и 水 (shuǐ) «вода». 冰水 (bīng shuǐ) «ледяная вода», 热咖啡 (rè kāfēi) «горячий кофе», 冰牛奶 (bīng niúnǎi) «холодное молоко». Два иероглифа 热 и 冰 помогают собрать много слов про напитки.", "speak_text": "热水"}, {"id": "h2", "type": "choice", "sentence": "Какое из этих слов означает «холодный, со льдом»?", "options": ["热的 (rè de)", "冰的 (bīng de)", "甜的 (tián de)", "辣的 (là de)"], "correct": "冰的 (bīng de)", "explanation": "«Холодный, со льдом» это 冰的 (bīng de), от 冰 (bīng) «лёд». 热的 (rè de) «горячий», 甜的 (tián de) «сладкий» с урока про рынок, 辣的 (là de) «острый» из ресторана. В кафе вопрос 热的还是冰的 означает «горячий или холодный?», относится он к напиткам.", "speak_text": "冰的"}, {"id": "h3", "type": "choice", "sentence": "Иероглиф 热 есть в нескольких словах урока. Какое из них означает «горячий чай»?", "options": ["热咖啡 (rè kāfēi)", "冰红茶 (bīng hóngchá)", "热茶 (rè chá)", "热水 (rè shuǐ)"], "correct": "热茶 (rè chá)", "explanation": "«Горячий чай» это 热茶 (rè chá): 热 (rè) «горячий» и 茶 (chá) «чай», оба иероглифа вы знаете. 热咖啡 (rè kāfēi) «горячий кофе», 冰红茶 (bīng hóngchá) «холодный чай со льдом», 热水 (rè shuǐ) «горячая вода». Один иероглиф 热 работает во всех напитках.", "speak_text": "热茶"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "Что означает фраза 我要一盒牛奶 (wǒ yào yì hé niúnǎi) из прошлого урока?", "options": ["Мне одну коробку молока", "Мне один стакан молока", "Мне одну бутылку молока", "Мне две коробки молока"], "correct": "Мне одну коробку молока", "explanation": "Разбор: 我 (wǒ) «я», 要 (yào) «мне нужно», 一盒 (yì hé) «одна коробка», 牛奶 (niúnǎi) «молоко». Молоко в магазине продаётся коробками, счётное слово 盒 (hé). В кафе молоко подали бы в стакане, 一杯牛奶 (yì bēi niúnǎi).", "speak_text": "我要一盒牛奶"}, {"id": "r2", "type": "choice", "sentence": "Сок в магазине лежит коробками на полке. Как спросить «сколько стоит коробка сока»?", "options": ["一盒果汁多少钱 (yì hé guǒzhī duōshao qián)", "一瓶果汁多少钱 (yì píng guǒzhī duōshao qián)", "一杯果汁多少钱 (yì bēi guǒzhī duōshao qián)", "一斤果汁多少钱 (yì jīn guǒzhī duōshao qián)"], "correct": "一盒果汁多少钱 (yì hé guǒzhī duōshao qián)", "explanation": "«Коробка сока» это 一盒果汁 (yì hé guǒzhī), вопрос о цене 多少钱 (duōshao qián). Бутылка была бы 一瓶 (yì píng), стакан в кафе 一杯 (yì bēi), а вес 一斤 (yì jīn) к соку не подходит, сок не взвешивают. Вопрос из прошлого урока, сегодня он пригодится и в кафе.", "speak_text": "一盒果汁多少钱"}, {"id": "r3", "type": "choice", "sentence": "В кафе Ната хочет сказать «мне нужен один стакан воды». Какая фраза правильная?", "options": ["我要一瓶水 (wǒ yào yì píng shuǐ)", "我要一杯水 (wǒ yào yì bēi shuǐ)", "我要一盒水 (wǒ yào yì hé shuǐ)", "我要两杯水 (wǒ yào liǎng bēi shuǐ)"], "correct": "我要一杯水 (wǒ yào yì bēi shuǐ)", "explanation": "В кафе воду подают в стаканах, поэтому 一杯水 (yì bēi shuǐ). 一瓶水 (yì píng shuǐ) «бутылка воды» из магазина, 一盒水 не говорят, коробками воду не продают, а 两杯水 (liǎng bēi shuǐ) было бы два стакана. Конструкция 我要 «мне нужно» одна и та же, меняется только счётное слово.", "speak_text": "我要一杯水"}]}, {"id": "s5", "title": "Практические ситуации", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Ната в китайском кафе у стойки. Погода прохладная, и она хочет чашку горячего кофе. Что сказать?", "options": ["我要一杯冰咖啡 (wǒ yào yì bēi bīng kāfēi)", "我要一杯热牛奶 (wǒ yào yì bēi rè niúnǎi)", "我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)", "我要一杯冰牛奶 (wǒ yào yì bēi bīng niúnǎi)"], "correct": "我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)", "explanation": "«Мне чашку горячего кофе» это 我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi). Порядок слов: 我要 «мне нужно», 一杯 «одна чашка», 热咖啡 «горячий кофе». 冰咖啡 был бы со льдом, а молоко это другой напиток. Такая фраза работает в любой кофейне Китая.", "speak_text": "我要一杯热咖啡"}, {"id": "p2", "type": "choice", "sentence": "Сотрудник кафе спрашивает Нату: 热的还是冰的 (rè de háishi bīng de). Что он хочет узнать?", "options": ["Горячий напиток или холодный", "Чай или кофе выбрать", "Большую порцию или маленькую", "Здесь выпить или с собой"], "correct": "Горячий напиток или холодный", "explanation": "Разбор: 热的 (rè de) «горячий», 还是 (háishi) «или», 冰的 (bīng de) «холодный, со льдом». Это стандартный вопрос в китайских кафе, задают его про кофе, чай и другие напитки. Ответить просто: 热的 (rè de) или 冰的 (bīng de). Слово 还是 «или» вы знаете по уроку про мясо на рынке.", "speak_text": "热的还是冰的"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на русский: 我要一杯冰水 (wǒ yào yì bēi bīng shuǐ).", "options": ["Мне один стакан ледяной воды", "Мне один стакан горячей воды", "Мне одну бутылку ледяной воды", "Мне один стакан холодного чая"], "correct": "Мне один стакан ледяной воды", "explanation": "Разбор: 我 (wǒ) «я», 要 (yào) «мне нужно», 一杯 (yì bēi) «один стакан», 冰水 (bīng shuǐ) «ледяная вода». Горячая вода была бы 热水 (rè shuǐ), бутылка 一瓶 (yì píng), а чай 茶 (chá). В кафе эта фраза звучит постоянно в жаркую погоду.", "speak_text": "我要一杯冰水"}, {"id": "tr2", "type": "choice", "sentence": "Скажите по-китайски: «Мне чашку горячего кофе».", "options": ["我要一杯冰咖啡 (wǒ yào yì bēi bīng kāfēi)", "我要一杯热牛奶 (wǒ yào yì bēi rè niúnǎi)", "我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)", "我要一杯冰牛奶 (wǒ yào yì bēi bīng niúnǎi)"], "correct": "我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi)", "explanation": "«Горячий» это 热 (rè), «кофе» 咖啡 (kāfēi), «чашка» 杯 (bēi). Собираем: 我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi). Молоко было бы 牛奶 (niúnǎi), а ледяной кофе 冰咖啡 (bīng kāfēi). Порядок слов в такой просьбе всегда одинаковый.", "speak_text": "我要一杯热咖啡"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог в кафе. Что заказала Ната?", "options": ["Горячий кофе и стакан ледяной воды", "Холодный кофе и стакан горячей воды", "Горячий кофе и коробку сока", "Холодный кофе и бутылку воды"], "correct": "Горячий кофе и стакан ледяной воды", "explanation": "Ната сказала 我要一杯热咖啡 (wǒ yào yì bēi rè kāfēi) «мне чашку горячего кофе», а на вопрос 还要别的吗 (hái yào bié de ma) «что-нибудь ещё?» ответила 一杯冰水 (yì bēi bīng shuǐ) «стакан ледяной воды». Кофе горячий, вода холодная, оба напитка в стаканах.", "audio_text": "Chen(M): 你好！请问要什么？ Nata(F): 我要一杯热咖啡。 Chen(M): 好的，咖啡十二块。还要别的吗？ Nata(F): 一杯冰水，谢谢。", "speak_text": "我要一杯热咖啡，一杯冰水"}, {"id": "l2", "type": "listen", "sentence": "Послушайте тот же диалог ещё раз. Сколько стоит кофе?", "options": ["Двенадцать юаней за чашку", "Двадцать юаней за чашку", "Двенадцать юаней за две чашки", "Двадцать два юаня за чашку"], "correct": "Двенадцать юаней за чашку", "explanation": "Chen сказал: 咖啡十二块 (kāfēi shí'èr kuài) «кофе двенадцать юаней». Число 十二 (shí'èr) «двенадцать» образуют иероглифы 十 (shí) «десять» и 二 (èr) «два», вы знаете их с самых первых уроков о числах. В китайских кафе цена указана за чашку, вода обычно стоит один или два юаня.", "audio_text": "Chen(M): 你好！请问要什么？ Nata(F): 我要一杯热咖啡。 Chen(M): 好的，咖啡十二块。还要别的吗？ Nata(F): 一杯冰水，谢谢。", "speak_text": "咖啡十二块"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
