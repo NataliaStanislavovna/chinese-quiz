@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 54: Молочный чай 奶茶 (nǎichá), большой и маленький стакан, сахар 糖 (táng)</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 54: Молочный чай 奶茶 (nǎichá), большой и маленький стакан, сахар 糖 (táng)</h1><div class="subtitle">2026-09-27</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">我要一杯奶茶 (wǒ yào yì bēi nǎichá)</div><div class="translation">Мне один стакан молочного чая</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 54: Молочный чай 奶茶 (nǎichá), большой и маленький стакан, сахар 糖 (táng)", "subtitle": "2026-09-27", "date": "2026-09-27", "phrase_of_the_day": "我要一杯奶茶 (wǒ yào yì bēi nǎichá)", "phrase_translation": "Мне один стакан молочного чая", "phrase_pinyin": "wǒ yào yì bēi nǎichá", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_54.mp3", "subtitles": [{"speaker": "Chen", "hanzi": "你好！请问要什么？", "pinyin": "nǐ hǎo！qǐng wèn yào shén me？"}, {"speaker": "Nata", "hanzi": "我要一杯奶茶。", "pinyin": "wǒ yào yī bēi nǎi chá。"}, {"speaker": "Chen", "hanzi": "好的。大杯还是小杯？", "pinyin": "hǎo de。dà bēi hái shì xiǎo bēi？"}, {"speaker": "Nata", "hanzi": "小杯，谢谢。", "pinyin": "xiǎo bēi，xiè xiè。"}, {"speaker": "Chen", "hanzi": "好的，小杯奶茶八块。", "pinyin": "hǎo de，xiǎo bēi nǎi chá bā kuài。"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Каким тоном произносится слог nǎi в слове 奶茶 (nǎichá) «молочный чай»?", "options": ["Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Третьим тоном, вниз и наверх", "explanation": "Слог nǎi третий тон, голос сначала опускается, потом поднимается. Иероглиф 奶 (nǎi) вы знаете по слову 牛奶 (niúnǎi) «молоко», а 茶 (chá) «чай» по слову 热茶 (rè chá) «горячий чай». Молочный чай это чай с молоком, самый популярный напиток китайских чайных.", "speak_text": "奶茶"}, {"id": "t2", "type": "choice", "sentence": "Каким тоном произносится слог dà в слове 大杯 (dà bēi) «большой стакан»?", "options": ["Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Четвёртым тоном, резко вниз", "explanation": "Слог dà четвёртый тон, голос резко идёт вниз. Иероглиф 大 (dà) «большой» вы знаете по фразе 你多大了 «сколько тебе лет», а 杯 (bēi) «стакан» по слову 一杯水. Противоположное слово сегодня новое: 小杯 (xiǎo bēi) «маленький стакан», иероглиф 小 (xiǎo) означает «маленький».", "speak_text": "大杯"}, {"id": "t3", "type": "choice", "sentence": "Каким тоном произносится слог táng в слове 糖 (táng) «сахар»?", "options": ["Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Вторым тоном, голос вверх", "explanation": "Слог táng второй тон, голос идёт вверх, как в русском слове «мороз», когда мы переспрашиваем. Иероглиф 糖 (táng) «сахар» новый сегодня. В чайных всегда спрашивают про сладость: 不要糖 (bú yào táng) «без сахара» или 半糖 (bàn táng) «полсладости», слово 半 (bàn) «половина» вы знаете по времени 半 «полчаса».", "speak_text": "糖"}, {"id": "t4", "type": "choice", "sentence": "Выберите правильный пиньинь фразы 一杯奶茶 «стакан молочного чая».", "options": ["yì bēi nǎichá", "yí bēi nǎichá", "yì bēi nàichá", "yì bēi nǎichǎ"], "correct": "yì bēi nǎichá", "explanation": "Правильный вариант yì bēi nǎichá. Единица 一 перед слогом первого тона bēi читается четвёртым тоном yì, это же правило было в 一杯热咖啡. Слог nǎi третий тон, поэтому запись nàichá неверна, а слог chá второй тон, вариант chǎ ошибочен.", "speak_text": "一杯奶茶"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что означает слово 奶茶 (nǎichá)?", "options": ["Молочный чай", "Горячий чай", "Холодное молоко", "Травяной чай"], "correct": "Молочный чай", "explanation": "奶茶 (nǎichá) это молочный чай, его готовят с молоком или сливками, часто добавляют шарики тапиоки. Слово складывается из известных вам частей: 奶 (nǎi) «молоко» и 茶 (chá) «чай». Горячий чай это 热茶 (rè chá), а холодное молоко 冰牛奶 (bīng niúnǎi).", "speak_text": "奶茶"}, {"id": "v2", "type": "choice", "sentence": "Сотрудник чайной спрашивает Нату: 大杯还是小杯 (dà bēi háishi xiǎo bēi). Что он хочет узнать?", "options": ["Какой размер стакана", "Горячий или холодный", "Сколько нужно заплатить", "С сахаром или без"], "correct": "Какой размер стакана", "explanation": "Разбор: 大杯 (dà bēi) «большой стакан», 还是 (háishi) «или», 小杯 (xiǎo bēi) «маленький стакан». Вопрос про размер порции, его задают в каждой чайной. Про температуру спрашивают 热的还是冰的, это было в прошлом уроке, а про сахар скажете сами, 不要糖 или 半糖.", "speak_text": "大杯还是小杯"}, {"id": "v3", "type": "choice", "sentence": "Что означает фраза 不要糖 (bú yào táng)?", "options": ["Без сахара", "Полсладости", "Без острого", "Слишком сладко"], "correct": "Без сахара", "explanation": "Разбор: 不 (bù) «не», 要 (yào) «нужно», 糖 (táng) «сахар». Перед четвёртым тоном yào слог bù читается bú, это же правило вы знаете по фразе 不要辣 «без острого». Полсладости это 半糖 (bàn táng), буквально «половина сахара». В китайских чайных сахар кладут по умолчанию, поэтому просить без сахара приходится отдельно.", "speak_text": "不要糖"}, {"id": "v4", "type": "choice", "sentence": "Ната любит сладкий чай, но не слишком сладкий. Что ей попросить в чайной?", "options": ["半糖 (bàn táng)", "不要糖 (bú yào táng)", "大杯 (dà bēi)", "小杯 (xiǎo bēi)"], "correct": "半糖 (bàn táng)", "explanation": "Полсладости это 半糖 (bàn táng), буквально «половина сахара», самый частый выбор в китайских чайных. 不要糖 (bú yào táng) означает совсем без сахара, для любительницы сладкого не подходит. 大杯 и 小杯 это размер стакана, к сладости они отношения не имеют.", "speak_text": "半糖"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "h1", "type": "choice", "sentence": "Какое из этих слов означает «молочный чай»?", "options": ["热茶 (rè chá)", "奶茶 (nǎichá)", "牛奶 (niúnǎi)", "冰水 (bīng shuǐ)"], "correct": "奶茶 (nǎichá)", "explanation": "Молочный чай это 奶茶 (nǎichá): 奶 (nǎi) «молоко» и 茶 (chá) «чай». 热茶 (rè chá) «горячий чай» без молока, 牛奶 (niúnǎi) просто «молоко», 冰水 (bīng shuǐ) «ледяная вода». Два знакомых иероглифа складываются в название самого популярного напитка китайских чайных.", "speak_text": "奶茶"}, {"id": "h2", "type": "choice", "sentence": "Какое из этих слов означает «маленький стакан»?", "options": ["大杯 (dà bēi)", "小杯 (xiǎo bēi)", "半杯 (bàn bēi)", "一杯 (yì bēi)"], "correct": "小杯 (xiǎo bēi)", "explanation": "Маленький стакан это 小杯 (xiǎo bēi), новый иероглиф 小 (xiǎo) означает «маленький», он противоположен знакомому 大 (dà) «большой». 大杯 (dà bēi) «большой стакан», 半杯 (bàn bēi) «полстакана», 一杯 (yì bēi) «один стакан». Пара 大 и 小 пригодится и дальше, например для размеров одежды.", "speak_text": "小杯"}, {"id": "h3", "type": "choice", "sentence": "Какое из этих слов означает «без сахара»?", "options": ["半糖 (bàn táng) полсладости", "热的 (rè de) горячий напиток", "甜的 (tián de) сладкий вкус", "不要糖 (bú yào táng) без сахара"], "correct": "不要糖 (bú yào táng) без сахара", "explanation": "Без сахара это 不要糖 (bú yào táng), новый иероглиф 糖 (táng) «сахар». 半糖 (bàn táng) «полсладости», 热的 (rè de) «горячий» из прошлого урока, 甜的 (tián de) «сладкий» с урока про рынок. В чайных на кассе всегда уточняют сладость, поэтому 糖 слово нужное.", "speak_text": "不要糖"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "В чайной Нату спросили: 热的还是冰的 (rè de háishi bīng de). Ната хочет горячий молочный чай. Что ответить?", "options": ["冰的 (bīng de)", "热的 (rè de)", "半糖 (bàn táng)", "大杯 (dà bēi)"], "correct": "热的 (rè de)", "explanation": "Вопрос 热的还是冰的 означает «горячий или холодный?», он был в прошлом уроке. Ната хочет горячий, значит отвечаем 热的 (rè de). 冰的 (bīng de) «холодный, со льдом» не подходит, а 半糖 и 大杯 отвечают на другие вопросы, про сладость и размер.", "speak_text": "热的"}, {"id": "r2", "type": "choice", "sentence": "Ната хочет взять молочный чай с собой в дорогу. Что сказать на кассе?", "options": ["在这里喝 (zài zhèlǐ hē)", "请打包 (qǐng dǎbāo)", "不要糖 (bú yào táng)", "还要别的吗 (hái yào bié de ma)"], "correct": "请打包 (qǐng dǎbāo)", "explanation": "«Заверните с собой» это 请打包 (qǐng dǎbāo), фраза из уроков про ресторан и кафе. В чайной с ней просят напиток навынос. 在这里喝 (zài zhèlǐ hē) «выпью здесь», 不要糖 «без сахара», 还要别的吗 (hái yào bié de ma) «что-нибудь ещё?» это вопрос сотрудника, а не ответ Наты.", "speak_text": "请打包"}, {"id": "r3", "type": "choice", "sentence": "Что означает вопрос 还要别的吗 (hái yào bié de ma), который Ната слышала в кафе и в чайной?", "options": ["Что-нибудь ещё нужно?", "Сколько с вас всего?", "Где находится касса?", "Горячий или холодный?"], "correct": "Что-нибудь ещё нужно?", "explanation": "Разбор: 还 (hái) «ещё», 要 (yào) «нужно», 别的 (bié de) «что-то другое», 吗 (ma) вопросительная частица. Этот вопрос сотрудники задают в кафе, чайных и ресторанах, когда заказ завершён. Отвечают 不要了 (bú yào le) «больше ничего не нужно», эту фразу вы слышали в уроке про ресторан.", "speak_text": "还要别的吗"}]}, {"id": "s5", "title": "Практические ситуации", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Ната у стойки китайской чайной и хочет один молочный чай. Что ей сказать?", "options": ["我要一杯奶茶 (wǒ yào yì bēi nǎichá)", "我要一杯牛奶 (wǒ yào yì bēi niúnǎi)", "我要两杯奶茶 (wǒ yào liǎng bēi nǎichá)", "我要一杯热茶 (wǒ yào yì bēi rè chá)"], "correct": "我要一杯奶茶 (wǒ yào yì bēi nǎichá)", "explanation": "«Мне один стакан молочного чая» это 我要一杯奶茶 (wǒ yào yì bēi nǎichá). Порядок слов тот же, что в заказах кофе: 我要 «мне нужно», 一杯 «один стакан», название напитка. 牛奶 было бы просто молоко, 两杯奶茶 это два стакана, а 热茶 чай без молока.", "speak_text": "我要一杯奶茶"}, {"id": "p2", "type": "choice", "sentence": "Сотрудник спрашивает: 大杯还是小杯 (dà bēi háishi xiǎo bēi). Ната не очень голодна и хочет маленький. Что ответить?", "options": ["大杯，谢谢 (dà bēi, xièxie)", "小杯，谢谢 (xiǎo bēi, xièxie)", "半糖，谢谢 (bàn táng, xièxie)", "不要了，谢谢 (bú yào le, xièxie)"], "correct": "小杯，谢谢 (xiǎo bēi, xièxie)", "explanation": "На вопрос о размере отвечаем размером: 小杯，谢谢 (xiǎo bēi, xièxie) «маленький стакан, спасибо». 大杯 было бы большой стакан, 半糖 отвечает про сладость, а 不要了, спасибо означает «больше ничего не нужно», это отказ от заказа целиком. В чайных большой стакан заметно дороже, маленький часто хватает.", "speak_text": "小杯，谢谢"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на русский: 我要一杯奶茶 (wǒ yào yì bēi nǎichá).", "options": ["Мне один стакан молочного чая", "Мне один стакан горячего чая", "Мне две бутылки молочного чая", "Мне один стакан холодного молока"], "correct": "Мне один стакан молочного чая", "explanation": "Разбор: 我 (wǒ) «я», 要 (yào) «мне нужно», 一杯 (yì bēi) «один стакан», 奶茶 (nǎichá) «молочный чай». Горячий чай был бы 热茶 (rè chá), две бутылки 两瓶 (liǎng píng), а холодное молоко 冰牛奶 (bīng niúnǎi). Фраза строится так же, как заказ кофе в прошлом уроке.", "speak_text": "我要一杯奶茶"}, {"id": "tr2", "type": "choice", "sentence": "Скажите по-китайски: «Без сахара, пожалуйста».", "options": ["半糖 (bàn táng)", "不要辣 (bú yào là)", "不要了 (bú yào le)", "不要糖 (bú yào táng)"], "correct": "不要糖 (bú yào táng)", "explanation": "«Без сахара» это 不要糖 (bú yào táng): 不 (bù) «не», 要 (yào) «нужно», 糖 (táng) «сахар». 不要辣 (bú yào là) «без острого» из урока про ресторан, 不要了 (bú yào le) «больше ничего не нужно», а 半糖 (bàn táng) «полсладости». Конструкция 不要 плюс то, что не нужно, работает везде.", "speak_text": "不要糖"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог в чайной. Что заказала Ната и какого размера?", "options": ["Молочный чай, маленький стакан", "Молочный чай, большой стакан", "Горячий кофе, маленький стакан", "Холодное молоко, большой стакан"], "correct": "Молочный чай, маленький стакан", "explanation": "Ната сказала 我要一杯奶茶 (wǒ yào yì bēi nǎichá) «мне стакан молочного чая», а на вопрос 大杯还是小杯 (dà bēi háishi xiǎo bēi) «большой или маленький стакан» ответила 小杯 (xiǎo bēi) «маленький». Напиток один, молочный чай, размер маленький.", "audio_text": "Chen(M): 你好！请问要什么？ Nata(F): 我要一杯奶茶。 Chen(M): 好的。大杯还是小杯？ Nata(F): 小杯，谢谢。 Chen(M): 好的，小杯奶茶八块。", "speak_text": "我要一杯奶茶，小杯"}, {"id": "l2", "type": "listen", "sentence": "Послушайте тот же диалог ещё раз. Сколько стоит заказ Наты?", "options": ["Восемь юаней", "Восемнадцать юаней", "Двенадцать юаней", "Шесть юаней"], "correct": "Восемь юаней", "explanation": "Chen сказал: 小杯奶茶八块 (xiǎo bēi nǎichá bā kuài) «маленький стакан молочного чая, восемь юаней». Число 八 (bā) «восемь» вы знаете с первых уроков о числах, а 块 (kuài) «юань» по всем урокам о ценах. Маленький стакан молочного чая за восемь юаней обычная цена в китайских чайных, большой стоит дороже.", "audio_text": "Chen(M): 你好！请问要什么？ Nata(F): 我要一杯奶茶。 Chen(M): 好的。大杯还是小杯？ Nata(F): 小杯，谢谢。 Chen(M): 好的，小杯奶茶八块。", "speak_text": "小杯奶茶八块"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
