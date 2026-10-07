@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 64: Фрукты: 梨 «груша» и 桃子 «персик», покупка фруктов</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 64: Фрукты: 梨 «груша» и 桃子 «персик», покупка фруктов</h1><div class="subtitle">2026-10-07</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">桃子甜吗 (táozi tián ma)</div><div class="translation">Персики сладкие?</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 64: Фрукты: 梨 «груша» и 桃子 «персик», покупка фруктов", "subtitle": "2026-10-07", "date": "2026-10-07", "phrase_of_the_day": "桃子甜吗 (táozi tián ma)", "phrase_translation": "Персики сладкие?", "phrase_pinyin": "táozi tián ma", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_64.mp3", "subtitles": [{"speaker": "Wang", "hanzi": "你好！要买什么水果？", "pinyin": "nǐ hǎo！yào mǎi shén me shuǐ guǒ？"}, {"speaker": "Nata", "hanzi": "桃子甜吗？", "pinyin": "táo zi tián ma？"}, {"speaker": "Wang", "hanzi": "很甜！八块一斤。", "pinyin": "hěn tián！bā kuài yī jīn。"}, {"speaker": "Nata", "hanzi": "好的，我要一斤桃子。", "pinyin": "hǎo de，wǒ yào yī jīn táo zi。"}, {"speaker": "Wang", "hanzi": "还要别的吗？", "pinyin": "hái yào bié de ma？"}, {"speaker": "Nata", "hanzi": "不要了，谢谢。", "pinyin": "bú yào le，xiè xiè。"}, {"speaker": "Wang", "hanzi": "一共八块，请拿好。", "pinyin": "yī gòng bā kuài，qǐng ná hǎo。"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Каким тоном произносится новое слово 梨 (lí) «груша»?", "options": ["Вторым тоном, голос вверх", "Первым тоном, ровно и высоко", "Третьим тоном, вниз и наверх", "Четвёртым тоном, резко вниз"], "correct": "Вторым тоном, голос вверх", "explanation": "Слог lí второй тон, голос идёт вверх, как в русском вопросе «что?». Слово 梨 (lí) означает «груша». Не путайте со слогом lì четвёртым тоном, там голос резко падает вниз.", "speak_text": "梨"}, {"id": "t2", "type": "choice", "sentence": "Каким тоном произносится второй слог в слове 桃子 (táozi) «персик»?", "options": ["Нейтральным тоном, коротко и безударно", "Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Четвёртым тоном, резко вниз"], "correct": "Нейтральным тоном, коротко и безударно", "explanation": "Слог zi в слове 桃子 (táozi) произносится нейтральным тоном, коротко и без ударения, как в словах 包子 (bāozi) «пирожки» и 饺子 (jiǎozi) «пельмени». Первый слог táo второй тон, голос вверх.", "speak_text": "桃子"}, {"id": "t3", "type": "choice", "sentence": "Выберите правильный пиньинь слова 梨 «груша».", "options": ["lí", "lì", "lǐ", "nǐ"], "correct": "lí", "explanation": "Правильный вариант lí, второй тон. Вариант lì это четвёртый тон, а lǐ третий. Слог nǐ означает «ты», вы знаете иероглиф 你 (nǐ) из приветствия 你好 (nǐhǎo).", "speak_text": "梨"}, {"id": "t4", "type": "choice", "sentence": "Выберите правильный пиньинь слова 桃子 «персик».", "options": ["táozi", "táozǐ", "tāozi", "dàozi"], "correct": "táozi", "explanation": "Правильный вариант táozi: слог táo второй тон, а слог zi нейтральный, поэтому значок тона над ним не ставится. Так же устроено слово 橙子 (chéngzi) «апельсин». В вариантах táozǐ и tāozi неверно указаны тона.", "speak_text": "桃子"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что означает новое слово 梨 (lí)?", "options": ["Груша, сочный сладкий фрукт", "Персик, пушистый летний фрукт", "Слива, мелкий синий фрукт", "Лимон, кислый жёлтый фрукт"], "correct": "Груша, сочный сладкий фрукт", "explanation": "梨 (lí) означает «груша». Персик это 桃子 (táozi), новое слово этого урока. Лимон это 柠檬 (níngméng), оно часто встречается в чайной, когда выбирают лимонный чай.", "speak_text": "梨"}, {"id": "v2", "type": "choice", "sentence": "Что такое 桃子 (táozi)?", "options": ["Персик, сладкий летний фрукт", "Груша, сочный осенний фрукт", "Банан, длинный жёлтый фрукт", "Арбуз, большой полосатый фрукт"], "correct": "Персик, сладкий летний фрукт", "explanation": "桃子 (táozi) это «персик». Груша это 梨 (lí), банан это 香蕉 (xiāngjiāo), а арбуз это 西瓜 (xīguā). Персики в Китае продают летом, на рынке и в магазине фруктов.", "speak_text": "桃子"}, {"id": "v3", "type": "choice", "sentence": "Продавец фруктов говорит: 桃子很甜 (táozi hěn tián). Что он сказал про персики?", "options": ["Что они сладкие", "Что они кислые", "Что они дорогие", "Что они холодные"], "correct": "Что они сладкие", "explanation": "甜 (tián) означает «сладкий», а 很 (hěn) «очень». Кислые это 酸 (suān), дорогие это 贵 (guì). Так продавец хвалит свой товар, это можно услышать на любом фруктовом прилавке.", "speak_text": "桃子很甜"}, {"id": "v4", "type": "choice", "sentence": "Как спросить у продавца, сладкие ли персики?", "options": ["桃子甜吗 (táozi tián ma)", "桃子酸吗 (táozi suān ma)", "桃子贵吗 (táozi guì ma)", "桃子多少钱 (táozi duōshao qián)"], "correct": "桃子甜吗 (táozi tián ma)", "explanation": "«Персики сладкие?» это 桃子甜吗 (táozi tián ma): слово 甜 (tián) «сладкий» плюс вопросительное 吗 (ma). Вариант 桃子酸吗 (táozi suān ma) спрашивает про кислый вкус, 桃子贵吗 (táozi guì ma) про цену, а 桃子多少钱 (táozi duōshao qián) это вопрос «сколько стоят персики?».", "speak_text": "桃子甜吗"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "h1", "type": "choice", "sentence": "Выберите иероглиф, который читается lí.", "options": ["梨", "桃", "甜", "苹"], "correct": "梨", "explanation": "Иероглиф 梨 (lí) означает «груша». 桃 (táo) входит в слово 桃子 (táozi) «персик», 甜 (tián) означает «сладкий», а 苹 (píng) вы знаете по слову 苹果 (píngguǒ) «яблоко».", "speak_text": "梨"}, {"id": "h2", "type": "choice", "sentence": "Выберите иероглиф, который означает «персик».", "options": ["桃 (táo)", "梨 (lí)", "苹 (píng)", "蕉 (jiāo)"], "correct": "桃 (táo)", "explanation": "Иероглиф 桃 (táo) означает «персик» и входит в слово 桃子 (táozi). 梨 (lí) это «груша», 苹 (píng) входит в слово 苹果 (píngguǒ) «яблоко», а 蕉 (jiāo) в слово 香蕉 (xiāngjiāo) «банан».", "speak_text": "桃"}, {"id": "h3", "type": "choice", "sentence": "Какой иероглиф входит в слово 西瓜 «арбуз»?", "options": ["瓜 (guā)", "桃 (táo)", "梨 (lí)", "莓 (méi)"], "correct": "瓜 (guā)", "explanation": "Слово 西瓜 (xīguā) «арбуз» состоит из 西 (xī) «запад» и 瓜 (guā) «дыня, тыквенный плод». 莓 (méi) вы знаете по слову 草莓 (cǎoméi) «клубника», а 桃 (táo) и 梨 (lí) это новые фрукты этого урока.", "speak_text": "西瓜"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "На рынке фрукты продают на вес. Какая мера веса равна половине килограмма?", "options": ["斤 (jīn), вес в полкило", "两 (liǎng), число два", "个 (gè), одна штука", "杯 (bēi), один стакан"], "correct": "斤 (jīn), вес в полкило", "explanation": "Мера 斤 (jīn) равна 500 граммов, поэтому 两斤 (liǎng jīn) это килограмм. Словом 个 (gè) считают штуки, например персики, а 杯 (bēi) это стакан для напитков. Два это 两 (liǎng), это число, а не вес.", "speak_text": "斤"}, {"id": "r2", "type": "choice", "sentence": "Как по-китайски называется виноград?", "options": ["葡萄 (pútáo)", "西瓜 (xīguā)", "草莓 (cǎoméi)", "橙子 (chéngzi)"], "correct": "葡萄 (pútáo)", "explanation": "Виноград это 葡萄 (pútáo), вы встречали это слово на рынке фруктов. Арбуз это 西瓜 (xīguā), клубника это 草莓 (cǎoméi), а апельсин это 橙子 (chéngzi).", "speak_text": "葡萄"}, {"id": "r3", "type": "choice", "sentence": "Кого в Китае называют 老板 (lǎobǎn)?", "options": ["Хозяина лавки или прилавка", "Водителя машины такси", "Официанта в ресторане", "Пассажира в поезде"], "correct": "Хозяина лавки или прилавка", "explanation": "老板 (lǎobǎn) это «хозяин», так обращаются к продавцу лапшичной или лавки уличной еды. Водителя такси называют 师傅 (shīfu), а официанта в ресторане 服务员 (fúwùyuán). Пассажир это 乘客, это слово вам пока не встречалось.", "speak_text": "老板"}]}, {"id": "s5", "title": "Практические ситуации", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Ната у прилавка с фруктами. Она хочет полкило персиков. Что ей сказать?", "options": ["我要一斤桃子 (wǒ yào yì jīn táozi)", "我要一斤梨子 (wǒ yào yì jīn lízi)", "我要两斤桃子 (wǒ yào liǎng jīn táozi)", "我要一斤苹果 (wǒ yào yì jīn píngguǒ)"], "correct": "我要一斤桃子 (wǒ yào yì jīn táozi)", "explanation": "«Мне полкило персиков» это 我要一斤桃子 (wǒ yào yì jīn táozi): 一斤 (yì jīn) это полкило. Во втором варианте заказана груша, в третьем 两斤 (liǎng jīn) это уже целый килограмм, а в четвёртом вместо персиков яблоки.", "speak_text": "我要一斤桃子"}, {"id": "p2", "type": "choice", "sentence": "Цены на рынке: 桃子八块钱一斤，梨五块钱一斤 (táozi bā kuài qián yì jīn, lí wǔ kuài qián yì jīn). Ната берёт полкило персиков и полкило груш. Сколько всего она заплатит?", "options": ["Шесть с половиной юаня", "Пять с половиной юаня", "Семь с половиной юаня", "Тринадцать юаней ровно"], "correct": "Шесть с половиной юаня", "explanation": "Полкило персиков это 四块 (sì kuài), полкило груш это 两块五 (liǎng kuài wǔ), вместе 六块五 (liù kuài wǔ), шесть юаней пятьдесят. Тринадцать вышло бы за целый килограмм того и другого. На рынке фруктов поторговаться можно, сказав 太贵了 (tài guì le).", "speak_text": "六块五"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Переведите на русский: 这个梨很甜 (zhège lí hěn tián).", "options": ["Эта груша очень сладкая", "Этот персик очень сладкий", "Эта груша очень кислая", "Это яблоко очень сладкое"], "correct": "Эта груша очень сладкая", "explanation": "这个 (zhège) означает «этот, эта», 梨 (lí) «груша», 很 (hěn) «очень», 甜 (tián) «сладкий». Персик это 桃子 (táozi), кислая это 酸 (suān), а яблоко это 苹果 (píngguǒ).", "speak_text": "这个梨很甜"}, {"id": "tr2", "type": "choice", "sentence": "Скажите по-китайски: «персик».", "options": ["桃子 (táozi)", "梨 (lí)", "苹果 (píngguǒ)", "香蕉 (xiāngjiāo)"], "correct": "桃子 (táozi)", "explanation": "«Персик» это 桃子 (táozi), новое слово этого урока. 梨 (lí) это «груша», 苹果 (píngguǒ) «яблоко», а 香蕉 (xiāngjiāo) «банан». Все эти фрукты легко найти на китайском рынке.", "speak_text": "桃子"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог у прилавка с фруктами. Что купила Ната?", "options": ["Полкило персиков", "Полкило груш", "Килограмм персиков", "Два персика и грушу"], "correct": "Полкило персиков", "explanation": "Ната сказала 我要一斤桃子 (wǒ yào yì jīn táozi) «мне полкило персиков», потому что 一斤 (yì jīn) это 500 граммов. Про груши и количество «два» в диалоге речи не было.", "audio_text": "Wang(M): 你好！要买什么水果？ Nata(F): 桃子甜吗？ Wang(M): 很甜！八块一斤。 Nata(F): 好的，我要一斤桃子。 Wang(M): 还要别的吗？ Nata(F): 不要了，谢谢。 Wang(M): 一共八块，请拿好。", "speak_text": "我要一斤桃子"}, {"id": "l2", "type": "listen", "sentence": "Послушайте тот же диалог ещё раз. Сколько всего заплатила Ната?", "options": ["Восемь юаней", "Четыре юаня", "Шестнадцать юаней", "Восемнадцать юаней"], "correct": "Восемь юаней", "explanation": "Продавец Wang сказал 一共八块 (yígòng bā kuài) «всего восемь юаней». Персики стоят восемь юаней за полкило, а Ната взяла ровно полкило, других покупок не было.", "audio_text": "Wang(M): 你好！要买什么水果？ Nata(F): 桃子甜吗？ Wang(M): 很甜！八块一斤。 Nata(F): 好的，我要一斤桃子。 Wang(M): 还要别的吗？ Nata(F): 不要了，谢谢。 Wang(M): 一共八块，请拿好。", "speak_text": "一共八块"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
