@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Урок 70: Гостиница продолжение: 护照 «паспорт», 房卡 «карта от номера», 楼 «этаж», 电梯 «лифт»</title>
+<style>
+:root {
+  --bg: #1a1a2e; --card: #16213e; --accent: #e94560; --accent-light: #ff6b81;
+  --correct: #2ed573; --wrong: #ff4757; --text: #eaeaea; --text-dim: #8892a4;
+  --border: #2a3a5e; --btn-radius: 12px;
+  --theory-bg: rgba(255,255,255,0.03); --theory-border: #3a4a6e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 16px; -webkit-tap-highlight-color: transparent; }
+.container { max-width: 600px; margin: 0 auto; }
+.header { text-align: center; padding: 20px 0 16px; border-bottom: 1px solid var(--border); margin-bottom: 16px; }
+.header h1 { font-size: 22px; font-weight: 700; color: var(--accent-light); }
+.header .subtitle { font-size: 14px; color: var(--text-dim); margin-top: 4px; }
+.phrase-box { background: linear-gradient(135deg, rgba(233,69,96,0.12), rgba(255,107,129,0.08)); border: 1px solid rgba(233,69,96,0.3); border-radius: 12px; padding: 14px 16px; margin-bottom: 16px; text-align: center; }
+.phrase-box .label { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.phrase-box .phrase { font-size: 16px; font-weight: 600; font-style: italic; color: var(--text); }
+.phrase-box .translation { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+.progress-bar { width: 100%; height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--accent), var(--accent-light)); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+.section-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin-bottom: 16px; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.section-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+.section-audio { text-align: center; margin-bottom: 14px; padding: 12px; background: rgba(233,69,96,0.08); border-radius: 10px; border: 1px solid rgba(233,69,96,0.2); }
+.section-title .icon { font-size: 20px; }
+.theory { background: var(--theory-bg); border-left: 3px solid var(--theory-border); border-radius: 0 8px 8px 0; padding: 12px 14px; margin-bottom: 16px; font-size: 14px; line-height: 1.7; color: var(--text-dim); }
+.theory strong { color: var(--text); font-weight: 600; }
+.question-block { margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.06); }
+.question-number { font-size: 12px; font-weight: 600; color: var(--accent-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.sentence { font-size: 15px; line-height: 1.7; margin-bottom: 14px; padding: 12px; background: rgba(255,255,255,0.04); border-radius: 8px; }
+.speak-btn { background: rgba(233,69,96,0.15); border: 2px solid var(--accent); border-radius: 50%; width: 52px; height: 52px; font-size: 24px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px; transition: all 0.2s ease; line-height: 1; }
+.speak-btn:active { transform: scale(0.92); }
+.speak-btn.speaking { animation: pulse 0.8s ease-in-out infinite; background: rgba(233,69,96,0.3); }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(233,69,96,0.4); } 50% { box-shadow: 0 0 0 10px rgba(233,69,96,0); } }
+.options { display: flex; flex-direction: column; gap: 8px; }
+.options.horizontal { flex-direction: row; justify-content: center; gap: 12px; }
+.option-btn { background: rgba(255,255,255,0.06); border: 2px solid var(--border); border-radius: var(--btn-radius); padding: 14px 20px; font-size: 15px; color: var(--text); cursor: pointer; transition: all 0.2s ease; text-align: center; min-height: 48px; display: flex; align-items: center; justify-content: center; user-select: none; -webkit-user-select: none; }
+.option-btn:active { transform: scale(0.97); }
+.option-btn.correct { background: rgba(46,213,115,0.15); border-color: var(--correct); color: var(--correct); font-weight: 600; }
+.option-btn.wrong { background: rgba(255,71,87,0.15); border-color: var(--wrong); color: var(--wrong); font-weight: 600; }
+.option-btn:disabled { cursor: default; opacity: 0.7; }
+.option-btn:disabled:active { transform: none; }
+.option-btn .letter { font-weight: 700; margin-right: 8px; color: var(--text-dim); }
+.option-btn.correct .letter { color: var(--correct); }
+.option-btn.wrong .letter { color: var(--wrong); }
+.tf-btn { flex: 1; max-width: 140px; padding: 18px 24px; font-size: 18px; font-weight: 700; letter-spacing: 1px; }
+.explanation { margin-top: 10px; padding: 10px 12px; background: rgba(46,213,115,0.08); border-left: 3px solid var(--correct); border-radius: 0 8px 8px 0; font-size: 13px; line-height: 1.6; color: var(--text-dim); display: none; }
+.explanation.visible { display: block; }
+.results { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; text-align: center; animation: fadeIn 0.5s ease; }
+.results .score { font-size: 48px; font-weight: 800; margin: 16px 0; }
+.results .score .pct { font-size: 24px; color: var(--text-dim); }
+.results .score.excellent { color: var(--correct); }
+.results .score.good { color: var(--accent-light); }
+.results .score.needs-work { color: var(--wrong); }
+.results .message { font-size: 16px; color: var(--text-dim); margin-bottom: 20px; line-height: 1.5; }
+.results-detail { text-align: left; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+.results-detail h3 { font-size: 14px; color: var(--text-dim); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.result-item { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 14px; line-height: 1.5; }
+.result-item .ri-q { color: var(--text-dim); margin-bottom: 4px; }
+.result-item .ri-correct { color: var(--correct); font-weight: 600; }
+.result-item .ri-wrong { color: var(--wrong); font-weight: 600; text-decoration: line-through; margin-right: 8px; }
+.restart-btn { background: linear-gradient(135deg, var(--accent), var(--accent-light)); border: none; border-radius: var(--btn-radius); padding: 16px 40px; font-size: 16px; font-weight: 700; color: white; cursor: pointer; margin-top: 20px; transition: all 0.2s ease; }
+.restart-btn:active { transform: scale(0.97); }
+.hidden { display: none; }
+.speed-btn { background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 20px; padding: 6px 14px; font-size: 13px; color: var(--text-dim); cursor: pointer; transition: all 0.2s ease; }
+.speed-btn:active { transform: scale(0.95); }
+.speed-btn.active { background: rgba(233,69,96,0.2); border-color: var(--accent); color: var(--accent-light); font-weight: 600; }
+.mini-speak { background: rgba(233,69,96,0.15); border: 1px solid var(--accent); border-radius: 6px; width: 32px; height: 32px; font-size: 15px; color: var(--accent-light); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; margin-left: 6px; transition: all 0.2s ease; }
+.mini-speak:active { transform: scale(0.9); }
+.subtitles { background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-top: 10px; text-align: left; }
+.subtitles .sub-toggle { font-size: 12px; color: var(--accent-light); cursor: pointer; margin-bottom: 8px; display: block; }
+.subtitles .sub-line { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.subtitles .sub-line:last-child { border-bottom: none; margin-bottom: 0; }
+.subtitles .sub-speaker { font-size: 11px; color: var(--accent-light); text-transform: uppercase; margin-bottom: 2px; }
+.subtitles .sub-hanzi { font-size: 18px; color: var(--text); line-height: 1.6; }
+.subtitles .sub-pinyin { font-size: 13px; color: var(--text-dim); font-style: italic; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><h1>Урок 70: Гостиница продолжение: 护照 «паспорт», 房卡 «карта от номера», 楼 «этаж», 电梯 «лифт»</h1><div class="subtitle">2026-10-13</div><div class="subtitle" style="margin-top:6px;"><a href="https://nataliastanislavovna.github.io/chinese-quiz/archive.html" style="color:#7ec8ff;">📚 Все уроки</a> &nbsp;·&nbsp; <a href="https://nataliastanislavovna.github.io/chinese-quiz/weak.html" style="color:#7ec8ff;">🎯 Слабые места</a></div></div>
+  <div class="phrase-box"><div class="label">💡 Фраза дня</div><div class="phrase">房间在几楼 (fángjiān zài jǐ lóu)</div><div class="translation">На каком этаже комната?</div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  <div id="quizContent"></div>
+  <div class="results hidden" id="results">
+    <div style="font-size:14px;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;">Результат</div>
+    <div class="score" id="scoreDisplay"></div>
+    <div class="message" id="scoreMessage"></div>
+    <div class="results-detail" id="resultsDetail"></div>
+    <button class="restart-btn" onclick="restartQuiz()">Пройти ещё раз</button>
+  </div>
+</div>
+<script>
+const quizData = {"title": "Урок 70: Гостиница продолжение: 护照 «паспорт», 房卡 «карта от номера», 楼 «этаж», 电梯 «лифт»", "subtitle": "2026-10-13", "date": "2026-10-13", "phrase_of_the_day": "房间在几楼 (fángjiān zài jǐ lóu)", "phrase_translation": "На каком этаже комната?", "phrase_pinyin": "fángjiān zài jǐ lóu", "audio_url": "https://nataliastanislavovna.github.io/chinese-quiz/lessons/audio_70.mp3", "subtitles": [{"speaker": "Chen", "hanzi": "你好！要订房间吗？", "pinyin": "nǐ hǎo！yào dìng fáng jiān ma？"}, {"speaker": "Nata", "hanzi": "是，我订了。", "pinyin": "shì，wǒ dìng le。"}, {"speaker": "Chen", "hanzi": "好，护照呢？", "pinyin": "hǎo，hù zhào ne？"}, {"speaker": "Nata", "hanzi": "护照在这里。", "pinyin": "hù zhào zài zhè lǐ。"}, {"speaker": "Chen", "hanzi": "谢谢。房间在八楼，这是房卡。", "pinyin": "xiè xiè。fáng jiān zài bā lóu，zhè shì fáng kǎ。"}, {"speaker": "Nata", "hanzi": "请问，电梯在哪里？", "pinyin": "qǐng wèn，diàn tī zài nǎ lǐ？"}, {"speaker": "Chen", "hanzi": "电梯在左边。", "pinyin": "diàn tī zài zuǒ biān。"}, {"speaker": "Nata", "hanzi": "谢谢你！", "pinyin": "xiè xiè nǐ！"}], "sections": [{"id": "s1", "title": "Тоны и пиньинь", "icon": "🎵", "theory": "", "instruction": "", "questions": [{"id": "t1", "type": "choice", "sentence": "Каким тоном произносится слог 护 (hù) в слове 护照 (hùzhào) «паспорт»?", "options": ["Четвёртым тоном, резко вниз", "Первым тоном, ровно и высоко", "Вторым тоном, голос вверх", "Третьим тоном, вниз и наверх"], "correct": "Четвёртым тоном, резко вниз", "explanation": "Слог hù это четвёртый тон, голос резко падает вниз. Слово 护照 (hùzhào) означает «паспорт»: 护 (hù) «защищать», 照 (zhào) «свидетельство, документ». Буквально «документ, защищающий личность».", "speak_text": "护照"}, {"id": "t2", "type": "choice", "sentence": "Выберите правильный пиньинь слова 电梯 «лифт».", "options": ["diàntī", "diàntí", "diǎntī", "diàntǐ"], "correct": "diàntī", "explanation": "Правильный вариант diàntī: слог diàn четвёртый тон, резко вниз, а слог tī первый тон, ровно и высоко. Слово 电梯 (diàntī) означает «лифт»: 电 (diàn) «электричество», 梯 (tī) «лестница». В остальных вариантах неверно указан тон одного из слогов.", "speak_text": "电梯"}, {"id": "t3", "type": "choice", "sentence": "Каким тоном произносится слог 楼 (lóu) в вопросе 几楼 (jǐ lóu) «какой этаж»?", "options": ["Вторым тоном, голос вверх", "Четвёртым тоном, резко вниз", "Первым тоном, ровно и высоко", "Третьим тоном, вниз и наверх"], "correct": "Вторым тоном, голос вверх", "explanation": "Слог lóu это второй тон, голос идёт вверх, как удивлённое «а?». Иероглиф 楼 (lóu) означает «этаж, здание», а вопрос 几楼 (jǐ lóu) значит «какой этаж?».", "speak_text": "楼"}, {"id": "t4", "type": "choice", "sentence": "Выберите правильный пиньинь слова 房卡 «карта от номера».", "options": ["fángkǎ", "fàngkǎ", "fángkā", "fāngkǎ"], "correct": "fángkǎ", "explanation": "Правильный вариант fángkǎ: слог fáng второй тон, голос вверх, а слог kǎ третий тон, вниз и наверх. Иероглиф 房 (fáng) «комната» вам знаком по слову 房间 (fángjiān), а 卡 (kǎ) «карта» по фразе 刷卡 (shuākǎ) «платить картой». Остальные варианты ошибаются в тоне одного слога.", "speak_text": "房卡"}]}, {"id": "s2", "title": "Лексика", "icon": "📚", "theory": "", "instruction": "", "questions": [{"id": "v1", "type": "choice", "sentence": "Что такое 护照 (hùzhào)?", "options": ["Заграничный паспорт", "Билет на скоростной поезд", "Карта от номера в отеле", "Страховой медицинский полис"], "correct": "Заграничный паспорт", "explanation": "护照 (hùzhào) это «паспорт»: 护 (hù) «защищать», 照 (zhào) «свидетельство, документ». В Китае паспорт нужен при заселении в отель, при покупке билетов на поезд и при входе на вокзал. Билет это 票 (piào), комната это 房间 (fángjiān), а страховой полис обозначается другим словом.", "speak_text": "护照"}, {"id": "v2", "type": "choice", "sentence": "Что означает слово 房卡 (fángkǎ)?", "options": ["Карта от номера в отеле", "Кнопка вызова лифта", "Кассовый чек за проживание", "Бронь билета на самолёт"], "correct": "Карта от номера в отеле", "explanation": "房卡 (fángkǎ) это «карта от номера»: 房 (fáng) «комната» плюс 卡 (kǎ) «карта», которую вы знаете по фразе 刷卡 (shuākǎ) «платить картой». В китайских отелях ключом почти всегда служит именно карта: ею открывают дверь номера, а часто и лифт на своём этаже.", "speak_text": "房卡"}, {"id": "v3", "type": "choice", "sentence": "Что означает слово 电梯 (diàntī)?", "options": ["Лифт в отеле и торговом центре", "Эскалатор на станции метро", "Ключ от номера в гостинице", "Стойка регистрации гостей"], "correct": "Лифт в отеле и торговом центре", "explanation": "电梯 (diàntī) это «лифт»: 电 (diàn) «электричество» плюс 梯 (tī) «лестница», буквально «электрическая лестница». Табличку с этим словом вы увидите рядом с лифтами в отеле, в торговом центре и на вокзале. Ресепшн это 前台 (qiántái), а ключ это 房卡 (fángkǎ).", "speak_text": "电梯"}, {"id": "v4", "type": "choice", "sentence": "Ресепшнист говорит: 房间在五楼 (fángjiān zài wǔ lóu). Что это значит?", "options": ["Комната на пятом этаже", "Комната номер пять в отеле", "Свободно пять комнат сейчас", "Пять минут пешком до номера"], "correct": "Комната на пятом этаже", "explanation": "Ресепшнист сказал «комната на пятом этаже»: 房间 (fángjiān) «комната», 在 (zài), 五楼 (wǔ lóu) «пятый этаж». Конструкция «слово плюс 在 плюс этаж» работает так же, как знакомая вам конструкция «слово плюс 在 плюс сторона» из фразы 前台在左边 (qiántái zài zuǒbian) «ресепшн слева».", "speak_text": "房间在五楼"}]}, {"id": "s3", "title": "Иероглифы", "icon": "🔴", "theory": "", "instruction": "", "questions": [{"id": "h1", "type": "choice", "sentence": "Выберите иероглиф, который читается hù.", "options": ["护", "照", "楼", "梯"], "correct": "护", "explanation": "Иероглиф 护 (hù) читается четвёртым тоном и означает «защищать», он входит в слово 护照 (hùzhào) «паспорт». Остальные: 照 (zhào) «свидетельство», 楼 (lóu) «этаж», 梯 (tī) «лестница».", "speak_text": "护"}, {"id": "h2", "type": "choice", "sentence": "Какой иероглиф означает «этаж»?", "options": ["楼 (lóu)", "店 (diàn)", "房 (fáng)", "梯 (tī)"], "correct": "楼 (lóu)", "explanation": "Иероглиф 楼 (lóu) означает «этаж»: 八楼 (bā lóu) «восьмой этаж», 五楼 (wǔ lóu) «пятый этаж». Счёт этажей в Китае прямой: первый этаж это 一楼 (yì lóu), как в Европе. 店 (diàn) «заведение» из слова 酒店 (jiǔdiàn) «отель», 房 (fáng) «комната», 梯 (tī) «лестница».", "speak_text": "楼"}, {"id": "h3", "type": "choice", "sentence": "Слово 电梯 (diàntī) «лифт» состоит из двух иероглифов. Какой из них означает «лестница»?", "options": ["梯 (tī)", "电 (diàn)", "护 (hù)", "照 (zhào)"], "correct": "梯 (tī)", "explanation": "В слове 电梯 (diàntī) «лифт» иероглиф 梯 (tī) означает «лестница», а 电 (diàn) «электричество», буквально «электрическая лестница». Иероглифы 护 (hù) и 照 (zhào) вместе образуют 护照 (hùzhào) «паспорт».", "speak_text": "梯"}]}, {"id": "s4", "title": "Повторение пройденного", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "r1", "type": "choice", "sentence": "На выходе из супермаркета охранник обычно проверяет у покупателей?", "options": ["Кассовый чек о покупке", "Пакет с купленными продуктами", "Проездной билет на метро", "Билет на скорый поезд"], "correct": "Кассовый чек о покупке", "explanation": "Охранник на выходе сверяет кассовый чек 小票 (xiǎopiào) с покупками, поэтому чек лучше сохранять до выхода. Проездной и билеты тут ни при чём, а пакет сам по себе никого не интересует.", "speak_text": "小票"}, {"id": "r2", "type": "choice", "sentence": "Ресепшнист спросил: 住几天 (zhù jǐ tiān)? Ната будет жить три дня. Что ответить?", "options": ["住三天 (zhù sān tiān)", "住三楼 (zhù sān lóu)", "三天住 (sān tiān zhù)", "三个天 (sān gè tiān)"], "correct": "住三天 (zhù sān tiān)", "explanation": "«Проживу три дня» это 住三天 (zhù sān tiān): 住 (zhù) «жить», 三 (sān) «три», 天 (tiān) «день». Счётного слова после 天 не нужно, порядок слов такой: глагол, число, слово. Вариант 住三楼 (zhù sān lóu) значит «жить на третьем этаже», это уже про этаж, а не про дни.", "speak_text": "住三天"}, {"id": "r3", "type": "choice", "sentence": "Комната стоит двести юаней за день, Ната живёт два дня. Сколько всего за проживание?", "options": ["Четыреста юаней", "Двести юаней", "Шестьсот юаней", "Триста юаней"], "correct": "Четыреста юаней", "explanation": "Двести юаней умножаем на два дня, получается четыреста: 一共四百块 (yígòng sìbǎi kuài). Слово 一共 (yígòng) «всего» вы знаете по рынку и супермаркету, а 四百 (sìbǎi) «четыреста» образуется так же, как 三百 (sānbǎi) «триста».", "speak_text": "一共四百块"}]}, {"id": "s5", "title": "Практические ситуации", "icon": "💬", "theory": "", "instruction": "", "questions": [{"id": "p1", "type": "choice", "sentence": "Ресепшнист спросил: 护照呢 (hùzhào ne)? Что сказать Нате, показывая паспорт?", "options": ["护照在这里 (hùzhào zài zhèlǐ)", "电梯在这里 (diàntī zài zhèlǐ)", "房卡在这里 (fángkǎ zài zhèlǐ)", "房间在这里 (fángjiān zài zhèlǐ)"], "correct": "护照在这里 (hùzhào zài zhèlǐ)", "explanation": "Фраза 护照呢 (hùzhào ne) значит «а паспорт?»: частица 呢 (ne) образует короткий вопрос, как в знакомом вам 你呢 (nǐ ne) «а ты?». Показывая паспорт, Ната отвечает: 护照在这里 (hùzhào zài zhèlǐ) «паспорт здесь». Слово 这里 (zhèlǐ) «здесь» вы знаете по урокам о карте.", "speak_text": "护照在这里"}, {"id": "p2", "type": "choice", "sentence": "Ната получила карту от номера и хочет узнать, на каком этаже её комната. Что спросить?", "options": ["房间在几楼 (fángjiān zài jǐ lóu)", "房间多少钱 (fángjiān duōshao qián)", "房间在左边 (fángjiān zài zuǒbian)", "住几天 (zhù jǐ tiān)"], "correct": "房间在几楼 (fángjiān zài jǐ lóu)", "explanation": "«На каком этаже комната?» это 房间在几楼 (fángjiān zài jǐ lóu): 房间 (fángjiān) «комната», 几 (jǐ) «сколько», 楼 (lóu) «этаж». Это фраза дня. Вопрос о цене звучал бы 房间多少钱 (fángjiān duōshao qián), а 住几天 (zhù jǐ tiān) спрашивают о днях проживания.", "speak_text": "房间在几楼"}]}, {"id": "s6", "title": "Перевод", "icon": "✏️", "theory": "", "instruction": "", "questions": [{"id": "tr1", "type": "choice", "sentence": "Скажите по-китайски: «Паспорт здесь».", "options": ["护照在这里 (hùzhào zài zhèlǐ)", "护照在哪里 (hùzhào zài nǎlǐ)", "房卡在这里 (fángkǎ zài zhèlǐ)", "电梯在这里 (diàntī zài zhèlǐ)"], "correct": "护照在这里 (hùzhào zài zhèlǐ)", "explanation": "«Паспорт здесь» это 护照在这里 (hùzhào zài zhèlǐ). Вариант 护照在哪里 (hùzhào zài nǎlǐ) это вопрос «где паспорт?», а не ответ, а 房卡 (fángkǎ) «карта от номера» и 电梯 (diàntī) «лифт» это другие слова.", "speak_text": "护照在这里"}, {"id": "tr2", "type": "choice", "sentence": "Переведите на китайский: «Лифт слева».", "options": ["电梯在左边 (diàntī zài zuǒbian)", "电梯在右边 (diàntī zài yòubian)", "前台在左边 (qiántái zài zuǒbian)", "房卡在左边 (fángkǎ zài zuǒbian)"], "correct": "电梯在左边 (diàntī zài zuǒbian)", "explanation": "«Лифт слева» это 电梯在左边 (diàntī zài zuǒbian): 电梯 (diàntī) «лифт», 在 (zài), 左边 (zuǒbian) «слева». Вариант с 右边 (yòubian) меняет сторону, а 前台 (qiántái) «ресепшн» и 房卡 (fángkǎ) «карта от номера» это другие слова.", "speak_text": "电梯在左边"}]}, {"id": "s7", "title": "Listening Practice", "icon": "🎧", "theory": "", "instruction": "Listen to the audio, then answer the questions below.", "questions": [{"id": "l1", "type": "listen", "sentence": "Послушайте диалог на ресепшн. На каком этаже комната Наты?", "options": ["На восьмом этаже", "На седьмом этаже", "На девятом этаже", "На пятом этаже"], "correct": "На восьмом этаже", "explanation": "Ресепшнист сказал: 房间在八楼 (fángjiān zài bā lóu) «комната на восьмом этаже». Число 八 (bā) «восемь» вы знаете по счёту, а 楼 (lóu) это новый иероглиф «этаж».", "audio_text": "Chen(M): 你好！要订房间吗？ Nata(F): 是，我订了。 Chen(M): 好，护照呢？ Nata(F): 护照在这里。 Chen(M): 谢谢。房间在八楼，这是房卡。 Nata(F): 请问，电梯在哪里？ Chen(M): 电梯在左边。 Nata(F): 谢谢你！", "speak_text": "房间在八楼"}, {"id": "l2", "type": "listen", "sentence": "Послушайте тот же диалог ещё раз. Где находится лифт?", "options": ["Лифт слева", "Лифт справа", "Лифт впереди", "Ресепшн слева"], "correct": "Лифт слева", "explanation": "Ната спросила: 请问，电梯在哪里 (qǐngwèn, diàntī zài nǎlǐ) «скажите, пожалуйста, где лифт?», и ресепшнист ответил 电梯在左边 (diàntī zài zuǒbian) «лифт слева». Стороны 左边 (zuǒbian) и 右边 (yòubian) вы знаете по урокам о такси.", "audio_text": "Chen(M): 你好！要订房间吗？ Nata(F): 是，我订了。 Chen(M): 好，护照呢？ Nata(F): 护照在这里。 Chen(M): 谢谢。房间在八楼，这是房卡。 Nata(F): 请问，电梯在哪里？ Chen(M): 电梯在左边。 Nata(F): 谢谢你！", "speak_text": "电梯在左边"}]}]};
+let answered = 0, totalQuestions = 0, answers = {}, sectionData = [];
+
+function init() {
+  sectionData = quizData.sections || quizData;
+  sectionData.forEach(s => {
+    if (!answers[s.id]) answers[s.id] = {};
+    (s.questions || []).forEach(q => { totalQuestions++; answers[s.id][q.id] = null; });
+  });
+  renderAll(); updateProgress();
+  // Fix: after audio ends, reset so it can be replayed
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function renderAll() {
+  const c = document.getElementById('quizContent'); c.innerHTML = ''; let gq = 0;
+  sectionData.forEach(sec => {
+    let h = '<div class="section-card" id="section_' + sec.id + '">';
+    h += '<div class="section-title"><span class="icon">' + (sec.icon||'📝') + '</span>' + esc(sec.title) + '</div>';
+    if (sec.theory) h += '<div class="theory">' + fmtTheory(sec.theory) + '</div>';
+    if (sec.instruction) h += '<div style="font-size:14px;color:var(--text-dim);margin-bottom:14px;">' + esc(sec.instruction) + '</div>';
+    // Section-level audio: use pre-generated MP3 if available, else TTS fallback
+    var secAudioTexts = [...new Set((sec.questions||[]).filter(q=>q.type==='listen'&&q.audio_text).map(q=>q.audio_text))];
+    var secAudioUrl = quizData.audio_url || '';
+    if (secAudioTexts.length > 0) {
+      h += '<div class="section-audio">';
+      if (secAudioUrl) {
+        h += '<audio id="dialogAudio" controls preload="auto" style="width:100%;border-radius:10px;margin-bottom:6px;">';
+        h += '<source src="' + secAudioUrl + '" type="audio/mpeg">';
+        h += '</audio>';
+        h += '<div style="margin-top:8px;display:flex;justify-content:center;gap:8px;align-items:center;">';
+        h += '<span style="font-size:12px;color:var(--text-dim);">Скорость:</span>';
+        h += '<button class="speed-btn" data-speed="0.5" onclick="setAudioSpeed(0.5,this)">🐢 0.5x</button>';
+        h += '<button class="speed-btn" data-speed="0.75" onclick="setAudioSpeed(0.75,this)">0.75x</button>';
+        h += '<button class="speed-btn active" data-speed="1" onclick="setAudioSpeed(1,this)">1x</button>';
+        h += '</div>';
+      } else {
+        h += '<button class="speak-btn" data-audio-b64="' + btoa(unescape(encodeURIComponent(JSON.stringify(secAudioTexts)))) + '" onclick="speakSection(this)">🔊</button>';
+      }
+      h += '<div style="font-size:12px;color:var(--text-dim);margin-top:6px;">Нажми Play, чтобы послушать диалог</div>';
+      // Subtitles: show hanzi + pinyin
+      var subLines = secAudioTexts[0] || '';
+      var subData = quizData.subtitles || [];
+      if (subData.length > 0) {
+        h += '<div class="subtitles">';
+        h += '<span class="sub-toggle" onclick="toggleSubs(this)">📝 Текст диалога (нажми, чтобы показать/скрыть)</span>';
+        h += '<div class="sub-body" style="display:none;">';
+        subData.forEach(function(sl) {
+          h += '<div class="sub-line">';
+          h += '<div class="sub-speaker">' + esc(sl.speaker) + '</div>';
+          h += '<div class="sub-hanzi">' + esc(sl.hanzi) + '</div>';
+          h += '<div class="sub-pinyin">' + esc(sl.pinyin) + '</div>';
+          h += '</div>';
+        });
+        h += '</div>';
+        h += '</div>';
+      }
+      h += '</div>';
+    }
+    (sec.questions||[]).forEach(q => {
+      gq++; h += '<div class="question-block"><div class="question-number">Вопрос ' + gq + '</div>';
+      if (q.sentence) {
+        h += '<div class="sentence">' + fmtSent(q.sentence, sec.id, q.id, q.type) + '</div>';
+        // Mini speak button for questions that contain Chinese characters
+        var cnChars = q.sentence.match(/[\u4e00-\u9fff]/g);
+        if (cnChars || q.speak_text) {
+          var speakText = q.speak_text || q.sentence.replace(/___+/g,'');
+          h += '<button class="mini-speak" data-speak="' + esc(speakText) + '" onclick="speakCNFromBtn(this)">🔊 Послушать</button>';
+        }
+      }
+      h += renderOpts(sec.id, q);
+      if (q.explanation) h += '<div class="explanation" id="exp_'+sec.id+'_'+q.id+'">' + esc(q.explanation) + '</div>';
+      h += '</div>';
+    });
+    h += '</div>'; c.insertAdjacentHTML('beforeend', h);
+  });
+}
+
+function speakSection(btn) {
+  const texts = JSON.parse(decodeURIComponent(escape(atob(btn.dataset.audioB64))));
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn || texts.length === 0) return; btn.classList.add('speaking');
+  const v = window.speechSynthesis.getVoices();
+  const voice = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  let idx = 0;
+  function next() {
+    if (idx >= texts.length) { btn.classList.remove('speaking'); return; }
+    const u = new SpeechSynthesisUtterance(texts[idx]); u.lang='en-US'; u.rate=0.85;
+    if (voice) u.voice = voice;
+    u.onend = () => { idx++; setTimeout(next, 400); };
+    u.onerror = () => { btn.classList.remove('speaking'); };
+    window.speechSynthesis.speak(u);
+  }
+  next();
+}
+function speak(btn) {
+  const text = btn.dataset.audioText;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  document.querySelectorAll('.speak-btn').forEach(b => b.classList.remove('speaking'));
+  if (!btn) return; btn.classList.add('speaking');
+  const u = new SpeechSynthesisUtterance(text); u.lang='en-US'; u.rate=0.85;
+  const v = window.speechSynthesis.getVoices();
+  const ev = v.find(x=>x.lang.startsWith('en')&&/female/i.test(x.name)) || v.find(x=>x.lang.startsWith('en-')) || v.find(x=>x.lang.startsWith('en'));
+  if (ev) u.voice = ev;
+  u.onend = () => btn.classList.remove('speaking');
+  u.onerror = () => btn.classList.remove('speaking');
+  window.speechSynthesis.speak(u);
+}
+
+if (window.speechSynthesis) { window.speechSynthesis.getVoices(); if (window.speechSynthesis.onvoiceschanged!==undefined) { window.speechSynthesis.onvoiceschanged = function(){}; } }
+
+function fmtTheory(t) { return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'); }
+function fmtSent(s,sid,qid,type) { if(!s) return ''; if(type==='choice') return s.replace(/___+/g,'<span class="blank" id="blank_'+sid+'_'+qid+'">___</span>'); return esc(s); }
+
+function renderOpts(sid, q) {
+  const L='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if (q.type==='tf') return '<div class="options horizontal"><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="T" onclick="sel(this)">✓ True</button><button class="option-btn tf-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="F" onclick="sel(this)">✗ False</button></div>';
+  if (q.type==='choice'||q.type==='listen') {
+    let h='<div class="options">';
+    var _opts = (q.options||[]).slice();
+    for (var _i=_opts.length-1; _i>0; _i--) { var _j=Math.floor(Math.random()*(_i+1)); var _t=_opts[_i]; _opts[_i]=_opts[_j]; _opts[_j]=_t; }
+    _opts.forEach((o,i) => { h+='<button class="option-btn" data-sec="'+sid+'" data-q="'+q.id+'" data-val="'+esc(o)+'" onclick="sel(this)"><span class="letter">'+L[i]+'</span>'+esc(o)+'</button>'; });
+    return h+'</div>';
+  }
+  return '';
+}
+
+function sel(btn) {
+  const sid=btn.dataset.sec, qid=btn.dataset.q, val=btn.dataset.val;
+  if(answers[sid][qid]!==null) return;
+  answers[sid][qid]=val; answered++;
+  const sec=sectionData.find(s=>s.id===sid), q=sec.questions.find(x=>x.id==qid);
+  const corr=String(q.correct), ok=val===corr;
+  try { trackAnswer(quizData.title, sid, sec.title, q, ok); } catch(e) {}
+  btn.parentElement.querySelectorAll('.option-btn').forEach(s => {
+    s.disabled=true; if(s.dataset.val===corr) s.classList.add('correct'); if(s===btn&&!ok) s.classList.add('wrong');
+  });
+  const bl=document.getElementById('blank_'+sid+'_'+qid);
+  if(bl) { bl.textContent=corr; bl.classList.add(ok?'filled':'wrong-fill'); }
+  const ex=document.getElementById('exp_'+sid+'_'+qid); if(ex) ex.classList.add('visible');
+  updateProgress();
+  if(answered>=totalQuestions) setTimeout(showRes, 800);
+}
+
+function updateProgress() { document.getElementById('progressFill').style.width = (totalQuestions>0?(answered/totalQuestions*100):0)+'%'; }
+
+function showRes() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('results').classList.remove('hidden');
+  let ok=0, d='';
+  sectionData.forEach(sec => {
+    sec.questions.forEach(q => {
+      const ua=answers[sec.id][q.id], cs=String(q.correct), isOK=ua===cs; if(isOK) ok++;
+      d+='<div class="result-item"><div class="ri-q">'+esc(sec.title)+' — '+q.id+'</div>';
+      if(q.sentence) d+='<div>'+esc(q.sentence.replace(/___+/g,cs))+'</div>';
+      else if(q.options) d+='<div>'+esc(q.options.join(' / '))+'</div>';
+      if(!isOK&&ua!==null) d+='<div><span class="ri-wrong">'+esc(ua)+'</span> <span class="ri-correct">'+esc(cs)+'</span></div>';
+      if(isOK) d+='<div><span class="ri-correct">✓ '+esc(cs)+'</span></div>';
+      if(q.explanation) d+='<div style="color:var(--text-dim);font-size:12px;margin-top:4px;">'+esc(q.explanation)+'</div>';
+      d+='</div>';
+    });
+  });
+  const p=Math.round(ok/totalQuestions*100), el=document.getElementById('scoreDisplay');
+  el.innerHTML=ok+'/'+totalQuestions+' <span class="pct">('+p+'%)</span>';
+  el.className='score '+(p>=90?'excellent':p>=60?'good':'needs-work');
+  let m=''; if(p>=90) m='🎉 Отлично!'; else if(p>=70) m='👍 Хороший результат!'; else if(p>=50) m='📚 Стоит повторить.'; else m='💪 Попробуй ещё раз!';
+  document.getElementById('scoreMessage').textContent=m;
+  document.getElementById('resultsDetail').innerHTML='<h3>Подробно</h3>'+d;
+}
+
+function restartQuiz() {
+  answered=0; if(window.speechSynthesis) window.speechSynthesis.cancel();
+  Object.keys(answers).forEach(k=>Object.keys(answers[k]).forEach(qk=>answers[k][qk]=null));
+  document.getElementById('quizContent').classList.remove('hidden');
+  document.getElementById('results').classList.add('hidden');
+  renderAll(); updateProgress(); window.scrollTo(0,0);
+  // Re-attach audio ended handler after re-render
+  var audioEl = document.getElementById('dialogAudio');
+  if (audioEl) {
+    audioEl.addEventListener('ended', function() {
+      this.currentTime = 0;
+      this.pause();
+    });
+  }
+}
+
+function setAudioSpeed(speed, btn) {
+  const audio = document.getElementById('dialogAudio');
+  if (audio) audio.playbackRate = speed;
+  document.querySelectorAll('.speed-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+}
+
+function speakCNFromBtn(btn) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  var text = btn.dataset.speak || '';
+  var cnText = (text.match(/[\u4e00-\u9fff\uff0c\u3002\uff01\uff1f]+/g) || []).join('');
+  if (!cnText) cnText = text;
+  var u = new SpeechSynthesisUtterance(cnText);
+  u.lang = 'zh-CN'; u.rate = 0.8;
+  var voices = window.speechSynthesis.getVoices();
+  var zhVoice = voices.find(function(v) { return v.lang.startsWith('zh'); });
+  if (zhVoice) u.voice = zhVoice;
+  u.onend = function() { btn.style.opacity = '1'; };
+  u.onerror = function() { btn.style.opacity = '1'; };
+  btn.style.opacity = '0.5';
+  window.speechSynthesis.speak(u);
+}
+
+function toggleSubs(el) {
+  var body = el.parentElement.querySelector('.sub-body');
+  if (body) body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function esc(s) { if(!s) return ''; const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+init();
+
+// ==== Weak spots tracking (localStorage) ====
+function trackAnswer(lessonTitle, sid, secTitle, q, ok) {
+  var KEY = 'cnq_mistakes_v1';
+  var data = {};
+  try { data = JSON.parse(localStorage.getItem(KEY) || '{}'); } catch(e) { data = {}; }
+  var qk = (q.sentence || q.id).substring(0, 120);
+  var entry = data[qk];
+  if (!entry) {
+    // only track actual mistakes; first correct answer -> nothing to remember
+    if (ok) return;
+    entry = { section: secTitle, sentence: q.sentence || '', options: q.options || [],
+               correct: String(q.correct), explanation: q.explanation || '',
+               speak_text: q.speak_text || '', wrong: 0, right: 0, lessons: lessonTitle };
+    data[qk] = entry;
+  }
+  if (ok) { entry.right++; if (entry.right >= 2 && entry.wrong <= entry.right) { delete data[qk]; } }
+  else { entry.wrong++; entry.right = 0; }
+  try { localStorage.setItem(KEY, JSON.stringify(data)); } catch(e) {}
+}
+</script>
+</body>
+</html>
